@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Books from '../views/Books.vue'
+import Readinglist from '../views/Readinglist.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,14 @@ const router = new Router({
       path: "/archive",
       name: "archive",
       component: Books,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/readinglist",
+      name: "readinglist",
+      component: Readinglist,
       meta: {
         requiresAuth: false
       }

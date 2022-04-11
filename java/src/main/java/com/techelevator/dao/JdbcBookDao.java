@@ -43,8 +43,8 @@ public class JdbcBookDao implements BookDao{
             usersBooks.add(mapRowToBook(results));
         }
         return usersBooks;
-
     }
+
     private Book mapRowToBook(SqlRowSet row) {
         Book book = new Book();
 
@@ -56,8 +56,6 @@ public class JdbcBookDao implements BookDao{
         book.setBookAdded(row.getDate("book_added"));
 
         return book;
-
-
     }
 
 
