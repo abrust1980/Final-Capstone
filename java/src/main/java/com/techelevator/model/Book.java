@@ -6,30 +6,30 @@ import java.util.Date;
 
 public class Book {
 
-    private int isbn;
+    private String isbn;
     private String lastName;
     private String firstName;
     private String bookTitle;
     private int publicationYear;
     private Date bookAdded;
 
-    //public Book() {
-   // }
+    public Book() {
+    }
 
-  /*  public Book(int isbn, String lastName, String firstName, String bookTitle, int publicationYear, Date bookAdded) {
+    public Book(String isbn, String lastName, String firstName, String bookTitle, int publicationYear, Date bookAdded) {
         this.isbn = isbn;
         this.lastName = lastName;
         this.firstName = firstName;
         this.bookTitle = bookTitle;
         this.publicationYear = publicationYear;
         this.bookAdded = bookAdded;
-    } */
+    }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 

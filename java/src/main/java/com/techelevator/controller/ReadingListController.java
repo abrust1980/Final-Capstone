@@ -2,14 +2,12 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.BookDao;
 import com.techelevator.model.Book;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class ReadingListController {
 
