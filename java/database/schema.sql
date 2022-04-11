@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS book_user;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS book_detail;
 DROP SEQUENCE IF EXISTS seq_user_id;
@@ -33,7 +34,14 @@ CREATE TABLE book_detail (
 	book_title varchar(255) not null,
 	publication_year bigint,
 	isbn_number bigint,
-	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT pk_book_detail PRIMARY KEY (book_id)
+);
+
+CREATE TABLE book_user (
+	user_id int primary key,
+	book_id bigint primary key,
+
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
