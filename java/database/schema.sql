@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS book_user;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS book_detail;
 DROP SEQUENCE IF EXISTS seq_user_id;
-DROP SEQUENCE IF EXISTS seq_book_id;
+
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -21,27 +21,24 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
-CREATE SEQUENCE seq_book_id
-	INCREMENT BY 1
-	NO MAXVALUE
-	NO MINVALUE
-	CACHE 1;
 
 CREATE TABLE book_detail (
-	book_id serial primary key,
+	isbn_number bigint PRIMARY KEY NOT NULL,
 	author_last_name varchar(32) not null,
 	author_first_name varchar(32),
 	book_title varchar(255) not null,
 	publication_year bigint,
-	isbn_number bigint,
-	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT pk_book_detail PRIMARY KEY (book_id)
+	
+	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	
 );
 
 CREATE TABLE book_user (
-	user_id int primary key,
-	book_id bigint primary key,
-
+	user_id int,
+	isbn_number bigint,
+	constraint fk_book_user_user_id foreign key (user_id) references users(user_id),
+	constraint fk_book_user_isbn_number foreign key (isbn_number) references book_detail(isbn_number),
+	constraint pk_book_user primary key (user_id, isbn_number)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
