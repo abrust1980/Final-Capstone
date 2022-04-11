@@ -31,6 +31,12 @@ public class JdbcBookDao implements BookDao{
     }
 
 
+    public void addBook(Book book){
+        String sql = "";
+        jdbcTemplate.update(sql, book);
+    }
+
+
     public List<Book> userBookList(Principal principal){
         List<Book> usersBooks = new ArrayList<>();
         String sql = "SELECT book_detail.isbn_number, author_last_name, author_first_name, book_title," +
@@ -48,10 +54,10 @@ public class JdbcBookDao implements BookDao{
     private Book mapRowToBook(SqlRowSet row) {
         Book book = new Book();
 
-        book.setIsbn(row.getInt("isbn"));
+        book.setIsbn(row.getInt("isbn_number"));
         book.setLastName(row.getString("author_last_name"));
         book.setFirstName(row.getString("author_first_name"));
-        book.setBookTitle(row.getString("is_top_seller"));
+        book.setBookTitle(row.getString("book_title"));
         book.setPublicationYear(row.getInt("publication_year"));
         book.setBookAdded(row.getDate("book_added"));
 
