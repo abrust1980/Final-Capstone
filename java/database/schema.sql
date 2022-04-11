@@ -29,13 +29,13 @@ CREATE TABLE book_detail (
 	book_title varchar(255) not null,
 	publication_year bigint,
 	
-	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT pk_isbn_number PRIMARY KEY (book_id)
+	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	
 );
 
 CREATE TABLE book_user (
-	user_id int primary key,
-	isbn_number bigint primary key
+	user_id int,
+	isbn_number bigint
 
 );
 
