@@ -68,7 +68,7 @@ const router = new Router({
       name: "readinglist",
       component: Readinglist,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

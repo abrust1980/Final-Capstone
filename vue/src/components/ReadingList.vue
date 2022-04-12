@@ -1,22 +1,12 @@
 <template>
 <div class="reading-list">
-  <table>  
-  <thead>
-   <th>Book</th>   
-  </thead>  
-  <tbody>
-    <tr v-for="book in this.$store.state.readingListBooks" v-bind:key="book.isbn">
-    <td width="100%">
-        {{book.title}}
-    </td> 
-    </tr>     
-  </tbody>
-  </table>
+  <book-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />
 </div>
 </template>
 
 <script>
 import readingListService from "@/services/ReadingListService.js";
+import BookDetails from "@/components/BookDetails.vue";
 
 export default {
     name: "reading-list",
@@ -27,6 +17,14 @@ export default {
             });
         }
     },
+    computed: {
+        readingList() {
+            return this.$store.state.readingListBooks;
+        }
+    },
+    components: {
+        BookDetails
+    },
     created() {
         this.getReadingList();
     }
@@ -34,5 +32,10 @@ export default {
 </script>
 
 <style>
-
+.reading-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 </style>
