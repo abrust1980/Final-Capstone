@@ -10,6 +10,6 @@ export default {
     },
 
     addToReadingList(book) {
-        return http.post(`/user/readinglist/`, book);
+        return http.post(`/user/readinglist`, book);
     }
 }
