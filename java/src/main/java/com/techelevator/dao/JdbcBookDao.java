@@ -56,6 +56,12 @@ public class JdbcBookDao implements BookDao{
         return usersBooks;
     }
 
+    public void addBookToList(Book book) {
+        String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) " +
+                "VALUES (?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn());
+    }
+
     private Book mapRowToBook(SqlRowSet row) {
         Book book = new Book();
         book.setIsbn(row.getString("isbn_number"));
