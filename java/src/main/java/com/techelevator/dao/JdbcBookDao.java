@@ -45,11 +45,10 @@ public class JdbcBookDao implements BookDao{
 
     public List<Book> userBookList(Principal principal){
         List<Book> usersBooks = new ArrayList<>();
-        String sql = "SELECT book_detail.isbn_number, author_last_name, author_first_name, book_title," +
-                "publication_year, book_added FROM book_detail" +
-                "JOIN book_user ON book_detail.isbn_number = book_user.isbn_number" +
-                "JOIN users ON book_user.user_id = users.user_id" +
-                "WHERE users.username = ?;";
+        String sql = "SELECT book_detail.isbn_number, author_last_name, author_first_name, book_title, " +
+                "publication_year, book_added FROM book_detail " +
+                "JOIN book_user ON book_detail.isbn_number = book_user.isbn_number " +
+                "WHERE book_user.user_id = (SELECT user_id FROM users WHERE username = ?) ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName() );
         while(results.next()){
             usersBooks.add(mapRowToBook(results));
