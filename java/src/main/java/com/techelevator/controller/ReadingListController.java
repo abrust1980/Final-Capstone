@@ -29,6 +29,6 @@ public class ReadingListController {
 
     @RequestMapping(path = "/user/readinglist", method = RequestMethod.POST)
     public void addBook (@RequestParam Book book){
-        bookDao.addBook(book);
+        bookDao.addBookToUserList(book);
     }
 }

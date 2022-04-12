@@ -31,7 +31,7 @@ public class JdbcBookDao implements BookDao{
     }
 
 
-    public void addBook(Book book){
+    public void addBookToUserList(Book book){
         String sql = "";
         jdbcTemplate.update(sql, book);
     }

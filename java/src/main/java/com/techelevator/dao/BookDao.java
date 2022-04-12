@@ -9,6 +9,6 @@ public interface BookDao {
 
     List<Book> list();
     List<Book> userBookList(Principal principal);
-    void addBook(Book book);
+    void addBookToUserList(Book book);
 
 }
