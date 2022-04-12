@@ -64,11 +64,11 @@ const router = new Router({
       }
     },
     {
-      path: "/readinglist",
+      path: "/user/readinglist",
       name: "readinglist",
       component: Readinglist,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

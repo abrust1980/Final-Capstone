@@ -10,6 +10,7 @@ public interface BookDao {
     List<Book> list();
     List<Book> userBookList(Principal principal);
     void addBookToUserList(Book book, Long id);
+    void addBookToList(Book book);
     Long getIdByUsername(Principal principal);
 
 }
