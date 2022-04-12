@@ -43,8 +43,24 @@ CREATE TABLE book_user (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('testuser1','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('testuser2','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+
 
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('Day', 'Felicia', 'Embrace Your Weird', 2019, 9781982113223);
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('Murakami', 'Haruki', 'Kafka by the Shore', 2006, 9781400079278);
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('Carey', 'M.R.', 'The Girl With All the Gifts', 2014, 9780356500157);
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('Hemingway', 'Ernest', 'The Old Man and the Sea', 1996, 9780684830490);
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('de Saint-Exupéry', 'Antoine', 'Le Petit Prince', 1997, 9783125971400);
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) VALUES ('Atwood', 'Margaret', 'The Testaments', 2019, 9780385543781);
+
+INSERT INTO book_user (user_id, isbn_number) VALUES (1, 9781400079278);
+INSERT INTO book_user (user_id, isbn_number) VALUES (1, 9780356500157);
+INSERT INTO book_user (user_id, isbn_number) VALUES (2, 9780385543781);
+INSERT INTO book_user (user_id, isbn_number) VALUES (3, 9781400079278);
+INSERT INTO book_user (user_id, isbn_number) VALUES (3, 9780684830490);
+INSERT INTO book_user (user_id, isbn_number) VALUES (4, 9783125971400);
+INSERT INTO book_user (user_id, isbn_number) VALUES (4, 9781400079278);
 
 
 COMMIT TRANSACTION;
