@@ -29,11 +29,17 @@ public class JdbcBookDao implements BookDao{
         }
         return books;
     }
+    public Long getIdByUsername(Principal principal) {
+        String sql = "SELECT user_id FROM users WHERE username = ?";
+        String username = principal.getName();
+        Long id = jdbcTemplate.queryForObject(sql, Long.class, principal.getName());
+        return id;
 
+    }
 
-    public void addBook(Book book){
-        String sql = "";
-        jdbcTemplate.update(sql, book);
+    public void addBookToUserList(Book book, Long id){
+        String sql = "INSERT INTO book_user (user_id, isbn_number) VALUES (?, ?);";
+        jdbcTemplate.update(sql, id, book.getIsbn());
     }
 
 
