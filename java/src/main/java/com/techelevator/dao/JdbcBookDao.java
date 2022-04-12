@@ -29,39 +29,45 @@ public class JdbcBookDao implements BookDao{
         }
         return books;
     }
+    public Long getIdByUsername(Principal principal) {
+        String sql = "SELECT user_id FROM users WHERE username = ?";
+        String username = principal.getName();
+        Long id = jdbcTemplate.queryForObject(sql, Long.class, principal.getName());
+        return id;
 
-
-    public void addBookToUserList(Book book){
-        String sql = "";
-        jdbcTemplate.update(sql, book);
     }
 
 
-    public List<Book> userBookList(Principal principal){
-        List<Book> usersBooks = new ArrayList<>();
-        String sql = "SELECT book_detail.isbn_number, author_last_name, author_first_name, book_title," +
-                "publication_year, book_added FROM book_detail" +
-                "JOIN book_user ON book_detail.isbn_number = book_user.isbn_number" +
-                "JOIN users ON book_user.user_id = users.user_id" +
-                "WHERE users.username = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName() );
-        while(results.next()){
-            usersBooks.add(mapRowToBook(results));
+    public void addBookToUserList(Book book, Long id) {
+        String sql = "INSERT INTO book_user (user_id, isbn_number) VALUES (?, ?);";
+        jdbcTemplate.update(sql, id, book.getIsbn());
+    }
+
+
+        public List<Book> userBookList (Principal principal){
+            List<Book> usersBooks = new ArrayList<>();
+            String sql = "SELECT book_detail.isbn_number, author_last_name, author_first_name, book_title," +
+                    "publication_year, book_added FROM book_detail" +
+                    "JOIN book_user ON book_detail.isbn_number = book_user.isbn_number" +
+                    "JOIN users ON book_user.user_id = users.user_id" +
+                    "WHERE users.username = ?;";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName());
+            while (results.next()) {
+                usersBooks.add(mapRowToBook(results));
+            }
+            return usersBooks;
         }
-        return usersBooks;
-    }
 
-    private Book mapRowToBook(SqlRowSet row) {
-        Book book = new Book();
-        book.setIsbn(row.getString("isbn_number"));
-        book.setLastName(row.getString("author_last_name"));
-        book.setFirstName(row.getString("author_first_name"));
-        book.setBookTitle(row.getString("book_title"));
-        book.setPublicationYear(row.getInt("publication_year"));
-        book.setBookAdded(row.getDate("book_added"));
+        private Book mapRowToBook (SqlRowSet row){
+            Book book = new Book();
+            book.setIsbn(row.getString("isbn_number"));
+            book.setLastName(row.getString("author_last_name"));
+            book.setFirstName(row.getString("author_first_name"));
+            book.setBookTitle(row.getString("book_title"));
+            book.setPublicationYear(row.getInt("publication_year"));
+            book.setBookAdded(row.getDate("book_added"));
 
-        return book;
-    }
-
+            return book;
+        }
 
 }
