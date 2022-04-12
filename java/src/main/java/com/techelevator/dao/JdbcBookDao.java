@@ -43,7 +43,7 @@ public class JdbcBookDao implements BookDao{
                 "publication_year, book_added FROM book_detail" +
                 "JOIN book_user ON book_detail.isbn_number = book_user.isbn_number" +
                 "JOIN users ON book_user.user_id = users.user_id" +
-                "WHERE username = ?;";
+                "WHERE users.username = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName() );
         while(results.next()){
             usersBooks.add(mapRowToBook(results));

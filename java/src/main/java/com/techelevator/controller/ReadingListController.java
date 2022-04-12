@@ -26,4 +26,9 @@ public class ReadingListController {
     public List<Book> getUserBookList (Principal principal) {
         return bookDao.userBookList(principal);
     }
+
+    @RequestMapping(path = "/user/readinglist", method = RequestMethod.POST)
+    public void addBook (@RequestParam Book book){
+        bookDao.addBook(book);
+    }
 }
