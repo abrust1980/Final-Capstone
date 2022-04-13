@@ -48,6 +48,9 @@ export default new Vuex.Store({
     },
     ADD_TO_READING_LIST(state, book) {
       state.readingListBooks.push(book);
+    },
+    ADD_BOOK(state, book) {
+      state.allBooks.push(book);
     }
   }
 })
