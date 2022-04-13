@@ -38,5 +38,13 @@ public class ReadingListController {
         bookDao.addBookToList(book);
     }
 
+    // This is the code for checking for read book
+
+    @RequestMapping(path="/book/has-read", method = RequestMethod.GET)
+    public void hasRead (@RequestBody Book book, Principal principal){
+        Long userId = bookDao.getIdByUsername(principal);
+        bookDao.hasRead(userId, book.getIsbn());
+    }
+
 
 }

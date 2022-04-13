@@ -38,6 +38,13 @@ public class JdbcBookDao implements BookDao {
 
     }
 
+    @Override
+    public void hasRead(Long id, String isbn) {
+        boolean hasRead = true;
+        String sql = "";
+       jdbcTemplate.update(sql, id, isbn, hasRead);
+    }
+
 
     public void addBookToUserList(Book book, Long id) {
         String sql = "INSERT INTO book_user (user_id, isbn_number) VALUES (?, ?);";

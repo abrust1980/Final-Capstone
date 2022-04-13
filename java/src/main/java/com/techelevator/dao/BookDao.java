@@ -12,5 +12,6 @@ public interface BookDao {
     void addBookToUserList(Book book, Long id);
     void addBookToList(Book book);
     Long getIdByUsername(Principal principal);
+    void hasRead (Long id, String isbn);
 
 }
