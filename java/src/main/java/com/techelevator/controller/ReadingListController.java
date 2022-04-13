@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.BookDao;
 import com.techelevator.model.Book;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -40,7 +41,8 @@ public class ReadingListController {
 
     // This is the code for checking for read book
 
-    @RequestMapping(path="/book/has-read", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(path="/book/has-read", method = RequestMethod.PUT)
     public void hasRead (@RequestBody Book book, Principal principal){
         Long userId = bookDao.getIdByUsername(principal);
         bookDao.hasRead(userId, book.getIsbn());
