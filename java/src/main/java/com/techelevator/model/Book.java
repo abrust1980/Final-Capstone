@@ -13,6 +13,7 @@ public class Book {
     private int publicationYear;
     private Date bookAdded;
 
+
     public Book() {
     }
 
@@ -23,6 +24,7 @@ public class Book {
         this.bookTitle = bookTitle;
         this.publicationYear = publicationYear;
         this.bookAdded = bookAdded;
+
     }
 
     public String getIsbn() {
@@ -72,4 +74,6 @@ public class Book {
     public void setBookAdded(Date bookAdded) {
         this.bookAdded = bookAdded;
     }
+
+
 }
