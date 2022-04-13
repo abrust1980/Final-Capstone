@@ -7,5 +7,8 @@ const http = axios.create({
 export default {
     getBooks() {
         return http.get('/archive');
+    },
+    addBook(book) {
+        return http.post('/archive', book);
     }
 }

@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Books from '../views/Books.vue'
 import Readinglist from '../views/Readinglist.vue'
+import NewBook from '../views/NewBook.vue'
 
 Vue.use(Router)
 
@@ -69,6 +70,14 @@ const router = new Router({
       component: Readinglist,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/admin/create",
+      name: "addbook",
+      component: NewBook,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
