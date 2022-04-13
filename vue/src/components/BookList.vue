@@ -63,7 +63,7 @@ export default {
             }
             if (this.filter.publicationYear != "") {
                 filteredList = filteredList.filter((book) => 
-                book.publicationYear.toLowerCase().includes(this.filter.publicationYear.toLowerCase()));
+                book.publicationYear.toString().includes(this.filter.publicationYear));
             }
             return filteredList;
         }
@@ -125,5 +125,4 @@ padding: 17px;
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
 }
-
 </style>
