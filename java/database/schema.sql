@@ -36,6 +36,7 @@ CREATE TABLE book_detail (
 CREATE TABLE book_user (
 	user_id int,
 	isbn_number varchar(13),
+	has_read boolean DEFAULT false,
 	constraint fk_book_user_user_id foreign key (user_id) references users(user_id),
 	constraint fk_book_user_isbn_number foreign key (isbn_number) references book_detail(isbn_number),
 	constraint pk_book_user primary key (user_id, isbn_number)

@@ -38,6 +38,12 @@ public class JdbcBookDao implements BookDao {
 
     }
 
+    @Override
+    public void hasRead(Long id, String isbn) {
+        String sql = "UPDATE book_user SET has_read = true WHERE user_id = ? AND isbn_number = ?";
+       jdbcTemplate.update(sql, id, isbn);
+    }
+
 
     public void addBookToUserList(Book book, Long id) {
         String sql = "INSERT INTO book_user (user_id, isbn_number) VALUES (?, ?);";
