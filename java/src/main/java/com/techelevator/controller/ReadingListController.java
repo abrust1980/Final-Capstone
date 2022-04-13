@@ -48,10 +48,10 @@ public class ReadingListController {
         Long userId = bookDao.getIdByUsername(principal);
         bookDao.hasRead(userId, book.getIsbn());
     }
-    @RequestMapping(path="/book/has-read", method = RequestMethod.GET)
-    public boolean getHasRead (Principal principal, @RequestBody Book book) {
+    @RequestMapping(path="/book/has-read/{isbn}", method = RequestMethod.GET)
+    public boolean getHasRead (Principal principal, @PathVariable String isbn) {
         Long id = bookDao.getIdByUsername(principal);
-       return bookDao.hasReadValue(id, book.getIsbn());
+       return bookDao.hasReadValue(id, isbn);
     }
 
 

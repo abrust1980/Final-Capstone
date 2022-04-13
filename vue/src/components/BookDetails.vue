@@ -11,6 +11,7 @@
     <p>YEAR PUBLISHED</p>
     <h3>{{book.publicationYear}}</h3>
     <a href="#" class="add-button" v-on:click="addToReadingList(book)">Add to Reading List</a>
+    <a href="#" class="add-button" v-on:click="markAsRead(book)" v-if="!hasRead">Mark as Read</a>
 </div>
 </template>
 
@@ -22,10 +23,23 @@ export default {
     props: {
         book: Object
     },
+    data() {
+        return {
+            hasRead: false
+        }
+    },
     methods: {
         addToReadingList(book) {
             readingListService.addToReadingList(book).then(this.$store.commit("ADD_TO_READING_LIST", book));
+        },
+        markAsRead(book) {
+            readingListService.setHasRead(book).then(this.hasRead = true)
         }
+    },
+    created() {
+        readingListService.getHasRead(this.book.isbn).then((response) => {
+            this.hasRead = response.data;
+        })
     }
 }
 </script>
@@ -75,4 +89,5 @@ h3 {
     margin-bottom: 20px;
     font-size: 1em;
 }
+
 </style>
