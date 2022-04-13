@@ -13,5 +13,6 @@ public interface BookDao {
     void addBookToList(Book book);
     Long getIdByUsername(Principal principal);
     void hasRead (Long id, String isbn);
+    boolean hasReadValue(Long id, String isbn);
 
 }

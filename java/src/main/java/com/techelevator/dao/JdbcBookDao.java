@@ -44,6 +44,17 @@ public class JdbcBookDao implements BookDao {
        jdbcTemplate.update(sql, id, isbn);
     }
 
+    @Override
+    public boolean hasReadValue(Long id, String isbn) {
+        boolean hasRead = false;
+        String sql = "SELECT has_read FROM book_user WHERE user_id = ? AND isbn_number = ?";
+        hasRead = jdbcTemplate.queryForObject(sql, Boolean.class, id, isbn);
+        return hasRead;
+
+
+
+    }
+
 
     public void addBookToUserList(Book book, Long id) {
         String sql = "INSERT INTO book_user (user_id, isbn_number) VALUES (?, ?);";
@@ -79,6 +90,7 @@ public class JdbcBookDao implements BookDao {
             book.setBookTitle(row.getString("book_title"));
             book.setPublicationYear(row.getInt("publication_year"));
             book.setBookAdded(row.getDate("book_added"));
+
 
             return book;
         }
