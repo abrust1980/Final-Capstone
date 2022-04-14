@@ -1,19 +1,21 @@
 <template>
 <div>
+    <h1 class="page-name">All Books</h1>
     <div class="search-image-div">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <i class="material-icons" id="search-icon"  @click="isSearchShow = !isSearchShow">search</i>
     </div>
+    <h2 class="search-label" v-show="isSearchShow">Search</h2>
     <div class="search-bar" v-show="isSearchShow">
-        <input class="search-input" type="text" id="titleFilter" v-model="filter.bookTitle" placeholder="Title"/>
-        <input class="search-input" type="text" id="firstNameFilter" v-model="filter.firstName" placeholder="Author First Name"/>
-        <input class="search-input" type="text" id="lastNameFilter" v-model="filter.lastName" placeholder="Author Last Name"/>      
-        <input class="search-input" type="text" id="isbnFilter" v-model="filter.isbn" placeholder="ISBN"/>
-        <input class="search-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year"/>
+        <input class="site-input" type="text" id="titleFilter" v-model="filter.bookTitle" placeholder="Title..."/>
+        <input class="site-input" type="text" id="firstNameFilter" v-model="filter.firstName" placeholder="Author First Name..."/>
+        <input class="site-input" type="text" id="lastNameFilter" v-model="filter.lastName" placeholder="Author Last Name..."/>      
+        <input class="site-input" type="text" id="isbnFilter" v-model="filter.isbn" placeholder="ISBN..."/>
+        <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
-  <div class="book-list">
-  <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" />
-</div>
+    <div class="book-list">
+        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" />
+    </div>
 </div>
 </template>
 
@@ -84,7 +86,6 @@ export default {
     justify-content: center;
     align-items: center;
 }
-
 .search-image-div {
 display: flex;
 justify-content: right;
@@ -93,6 +94,7 @@ padding: 17px;
 
 .material-icons {
    color: #37464a;
+   font-size: 60px !important;
 }
 
 #search-icon {
@@ -100,7 +102,6 @@ padding: 17px;
    -webkit-user-select: none; 
    -moz-user-select: none; 
    -ms-user-select: none; 
-    font-size: 40px; 
 }
 
 .search-bar {
@@ -109,20 +110,35 @@ padding: 17px;
     align-items: center;
 }
 
-.search-input {
-    border: 8px solid #5DA2D5;
-    background-color: #F3D250;
+.site-input {
+    border: 5px solid #5DA2D5;
+    background-color: #ECECEC;
     padding: 5px;
     margin: 5px;
-    text-align: center;
+    text-align: left;
     font-family: 'Comfortaa', cursive;
     font-weight: bold;
 }
 
 ::placeholder {
-  color: black;
-  text-align: center;
+  color: #37464a;
+  text-align: left;
   font-family: 'Comfortaa', cursive;
-  font-weight: bold;
+  font-style: italic;
+}
+
+.search-label {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
 }
 </style>
