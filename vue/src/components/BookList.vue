@@ -1,6 +1,9 @@
 <template>
 <div>
     <h1 class="page-name">All Books</h1>
+    <div class="drop-zone" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
+        <drop-list-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />  
+    </div>
     <div class="search-image-div">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <i class="material-icons" id="search-icon"  @click="isSearchShow = !isSearchShow">search</i>
@@ -14,14 +17,16 @@
         <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
     <div class="book-list">
-        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" />
+        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" draggable @dragstart="startDrag($event, book)"/>
     </div>
 </div>
 </template>
 
 <script>
 import booksService from "@/services/BooksService.js";
+import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
+import DropListDetails from "@/components/DropListDetails.vue";
 
 export default {
     name: "books-list",
@@ -38,10 +43,28 @@ export default {
       }
     },
     methods: {
+        addToReadingList(book) {
+            readingListService.addToReadingList(book).then(this.$store.commit("ADD_TO_READING_LIST", book));
+        },
         getBooks() {
             booksService.getBooks().then(response => {
                 this.$store.commit("SET_BOOKS_LIST", response.data);
             });
+        },
+        getReadingList() {
+            readingListService.getReadingList().then(response => {
+                this.$store.commit("SET_READING_LIST", response.data);
+            });
+        },
+        startDrag(evt, item) {
+            evt.dataTransfer.dropEffect = 'move'
+            evt.dataTransfer.effectAllowed = 'move'
+            evt.dataTransfer.setData('itemID', item.isbn)
+        },
+        onDrop(evt) {
+            const itemID = evt.dataTransfer.getData('itemID')
+            const item = this.bookList.find(item => item.isbn == itemID)
+            this.addToReadingList(item)
         }
     },
     computed: {
@@ -68,12 +91,17 @@ export default {
                 book.publicationYear.toString().includes(this.filter.publicationYear));
             }
             return filteredList;
+        },
+        readingList() {
+            return this.$store.state.readingListBooks;
         }
     },
     components: {
-        BookDetails
+        BookDetails,
+        DropListDetails
     },
     created() {
+        this.getReadingList();
         this.getBooks();
     }
 }
@@ -140,5 +168,13 @@ padding: 17px;
     justify-content: center;
     align-items: center;
     font-size: 3em;
+}
+
+.drop-zone {
+    background-color: red;
+}
+
+.drop-el {
+    padding: 5px;
 }
 </style>
