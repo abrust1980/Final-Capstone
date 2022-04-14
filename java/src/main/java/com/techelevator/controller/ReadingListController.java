@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 @RestController
 public class ReadingListController {
@@ -19,6 +20,7 @@ public class ReadingListController {
         this.bookDao = bookDao;
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/archive", method = RequestMethod.GET)
     public List<Book> bookList (){
         return bookDao.list();
