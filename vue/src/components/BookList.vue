@@ -17,7 +17,9 @@
         <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
     <div class="book-list">
-        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" draggable @dragstart="startDrag($event, book)"/>
+        <div v-for="book in bookList" v-bind:key="book.isbn" draggable="true" @dragstart="startDrag(book, $event)" @dragover.prevent>
+        <book-details v-bind:book="book" />
+        </div>
     </div>
 </div>
 </template>
@@ -56,15 +58,13 @@ export default {
                 this.$store.commit("SET_READING_LIST", response.data);
             });
         },
-        startDrag(evt, item) {
-            evt.dataTransfer.dropEffect = 'move'
-            evt.dataTransfer.effectAllowed = 'move'
-            evt.dataTransfer.setData('itemID', item.isbn)
-        },
+        startDrag(item, evt) {
+             evt.dataTransfer.setData('bookID', item.isbn);
+         },
         onDrop(evt) {
-            const itemID = evt.dataTransfer.getData('itemID')
-            const item = this.bookList.find(item => item.isbn == itemID)
-            this.addToReadingList(item)
+            const itemID = evt.dataTransfer.getData('bookID');
+            const item = this.bookList.find(item => item.isbn == itemID);
+            this.addToReadingList(item);
         }
     },
     computed: {
