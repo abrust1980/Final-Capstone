@@ -31,6 +31,7 @@ import booksService from "@/services/BooksService.js";
 import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
 import DropListDetails from "@/components/DropListDetails.vue";
+import userService from "@/services/UserService.js";
 
 export default {
     name: "books-list",
@@ -67,6 +68,14 @@ export default {
             const itemID = evt.dataTransfer.getData('bookID');
             const item = this.bookList.find(item => item.isbn == itemID);
             this.addToReadingList(item);
+        },
+        getLastSearch() {
+            userService.getLastSearchDate().then(response => {
+                this.$store.commit("SET_SEARCH_DATE", response.data)
+            })
+        },
+        setLastSearch() {
+            userService.updateLastSearchDate();
         }
     },
     computed: {
