@@ -79,5 +79,8 @@ INSERT INTO book_user (user_id, isbn_number) VALUES (3, '9780684830490');
 INSERT INTO book_user (user_id, isbn_number) VALUES (4, '9783125971400');
 INSERT INTO book_user (user_id, isbn_number) VALUES (4, '9781400079278');
 
+INSERT INTO user_last_search (user_id) VALUES (1);
+INSERT INTO user_last_search (user_id) VALUES (2);
+
 
 COMMIT TRANSACTION;
