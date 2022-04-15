@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Book {
@@ -11,13 +12,13 @@ public class Book {
     private String firstName;
     private String bookTitle;
     private int publicationYear;
-    private Date bookAdded;
+    private Timestamp bookAdded;
 
 
     public Book() {
     }
 
-    public Book(String isbn, String lastName, String firstName, String bookTitle, int publicationYear, Date bookAdded) {
+    public Book(String isbn, String lastName, String firstName, String bookTitle, int publicationYear, Timestamp bookAdded) {
         this.isbn = isbn;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -71,7 +72,7 @@ public class Book {
         return bookAdded;
     }
 
-    public void setBookAdded(Date bookAdded) {
+    public void setBookAdded(Timestamp bookAdded) {
         this.bookAdded = bookAdded;
     }
 
