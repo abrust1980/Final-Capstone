@@ -4,7 +4,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
     <h2 class="book-title">{{book.bookTitle}}</h2>
-    <h3>{{book.firstName}}&nbsp;{{book.lastName}}</h3>
 </div>
 </template>
 
@@ -12,7 +11,7 @@
 import readingListService from '../services/ReadingListService.js'
 
 export default {
-    name: 'drop-details',
+    name: 'drop-list-details',
     props: {
         book: Object
     },
@@ -30,5 +29,7 @@ export default {
 </script>
 
 <style>
-
+.drop-details {
+     font-family: 'Comfortaa', cursive;
+}
 </style>

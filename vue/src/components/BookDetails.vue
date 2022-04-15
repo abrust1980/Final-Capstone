@@ -56,7 +56,7 @@ export default {
     margin: 20px;
     font-family: 'Comfortaa', cursive;
     text-align: center;
-    width: 20%;
+    width: 70%
 }
 
 .book-image {

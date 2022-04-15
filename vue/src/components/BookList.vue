@@ -1,12 +1,14 @@
 <template>
 <div>
     <h1 class="page-name">All Books</h1>
-    <div class="drop-zone" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
-        <drop-list-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />  
-    </div>
     <div class="search-image-div">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <i class="material-icons" id="search-icon"  @click="isSearchShow = !isSearchShow">search</i>
+    </div>
+        <div v-if="$store.state.token != ''" class="drop-zone" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
+            <router-link id="reading-list-link" v-bind:to="{ name: 'readinglist'}">My Reading List</router-link>
+            <h3 id="sidebar-caption">Drag book to sidebar to add</h3>
+                <drop-list-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />  
     </div>
     <h2 class="search-label" v-show="isSearchShow">Search</h2>
     <div class="search-bar" v-show="isSearchShow">
@@ -17,7 +19,9 @@
         <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
     <div class="book-list">
-        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" draggable @dragstart="startDrag($event, book)"/>
+        <div id="book-cards" v-for="book in bookList" v-bind:key="book.isbn" draggable="true" @dragstart="startDrag(book, $event)" @dragover.prevent>
+        <book-details v-bind:book="book" />
+        </div>
     </div>
 </div>
 </template>
@@ -56,15 +60,13 @@ export default {
                 this.$store.commit("SET_READING_LIST", response.data);
             });
         },
-        startDrag(evt, item) {
-            evt.dataTransfer.dropEffect = 'move'
-            evt.dataTransfer.effectAllowed = 'move'
-            evt.dataTransfer.setData('itemID', item.isbn)
-        },
+        startDrag(item, evt) {
+             evt.dataTransfer.setData('bookID', item.isbn);
+         },
         onDrop(evt) {
-            const itemID = evt.dataTransfer.getData('itemID')
-            const item = this.bookList.find(item => item.isbn == itemID)
-            this.addToReadingList(item)
+            const itemID = evt.dataTransfer.getData('bookID');
+            const item = this.bookList.find(item => item.isbn == itemID);
+            this.addToReadingList(item);
         }
     },
     computed: {
@@ -115,9 +117,9 @@ export default {
     align-items: center;
 }
 .search-image-div {
-display: flex;
-justify-content: right;
-padding: 17px;
+    display: flex;
+    justify-content: right;
+    padding: 17px;
 }
 
 .material-icons {
@@ -171,10 +173,36 @@ padding: 17px;
 }
 
 .drop-zone {
-    background-color: red;
+    margin-top: 20px;
+    height: 840px;
+    width: 250px;
+    position: sticky;
+    top: 0px;
+    float: right;
+    background-color: #F78888;
+    border: 8px solid #d35a5a;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
 }
 
 .drop-el {
     padding: 5px;
+}
+
+#book-cards {
+    width: 30%;
+}
+
+#reading-list-link {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#sidebar-caption {
+    color: #7a2828;
 }
 </style>
