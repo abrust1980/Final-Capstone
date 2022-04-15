@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.techelevator.model.UserNotFoundException;
@@ -42,7 +43,22 @@ public class JdbcUserDao implements UserDao {
         return userId;
     }
 
-	@Override
+    @Override
+    public void setLastSearchDate(int userId) {
+        String sql = "UPDATE user_last_search SET user_last_search = CURRENT_TIMESTAMP WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
+
+    @Override
+    public Date getLastSearchDate(int userId) {
+        Date searchDate = null;
+        String sql = "SELECT last_search FROM user_last_search WHERE user_id = ?";
+        searchDate = jdbcTemplate.queryForObject(sql, Date.class, userId);
+
+        return searchDate;
+    }
+
+    @Override
 	public User getUserById(Long userId) {
 		String sql = "SELECT * FROM users WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
