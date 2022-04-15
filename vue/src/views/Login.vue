@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -16,8 +16,8 @@
       <input
         type="text"
         id="username"
-        class="form-control"
-        placeholder="Username"
+        class="form-control site-input"
+        placeholder="Username..."
         v-model="user.username"
         required
         autofocus
@@ -26,13 +26,13 @@
       <input
         type="password"
         id="password"
-        class="form-control"
-        placeholder="Password"
+        class="form-control site-input"
+        placeholder="Password..."
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <router-link :to="{ name: 'register' }" id="register-link">Need an account?</router-link>
+      <button type="submit" class="signin-button">Sign in</button>
     </form>
   </div>
 </template>
@@ -74,3 +74,47 @@ export default {
   }
 };
 </script>
+
+<style>
+  .form-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .site-input {
+    border: 5px solid #5DA2D5;
+    background-color: #ECECEC;
+    padding: 5px;
+    margin: 5px;
+    text-align: left;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+}
+
+.signin-button {
+    border: 8px solid #5DA2D5;
+    background-color: #F3D250;
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    text-transform: uppercase;
+}
+
+label {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#register-link {
+  font-family: 'Comfortaa', cursive;
+  margin-top: 20px;
+  font-style: italic;
+}
+</style>

@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.User;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 public interface UserDao {
@@ -13,6 +15,10 @@ public interface UserDao {
     User findByUsername(String username);
 
     int findIdByUsername(String username);
+
+    void setLastSearchDate(int userId);
+
+    Date getLastSearchDate (int userId);
 
     boolean create(String username, String password, String role);
 }

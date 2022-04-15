@@ -1,12 +1,20 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS user_last_search;
 DROP TABLE IF EXISTS book_user;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS book_detail;
+DROP SEQUENCE IF EXISTS seq_user_login;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 
 CREATE SEQUENCE seq_user_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+  
+  CREATE SEQUENCE seq_user_login
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -42,6 +50,14 @@ CREATE TABLE book_user (
 	constraint pk_book_user primary key (user_id, isbn_number)
 );
 
+CREATE TABLE user_last_search (
+	user_login int DEFAULT nextval('seq_user_login'::regclass) NOT NULL,
+	user_id int,
+	last_search TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	
+	constraint fk_user_last_search_user_id foreign key (user_id) references users (user_id)
+);
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('testuser1','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
@@ -62,6 +78,9 @@ INSERT INTO book_user (user_id, isbn_number) VALUES (3, '9781400079278');
 INSERT INTO book_user (user_id, isbn_number) VALUES (3, '9780684830490');
 INSERT INTO book_user (user_id, isbn_number) VALUES (4, '9783125971400');
 INSERT INTO book_user (user_id, isbn_number) VALUES (4, '9781400079278');
+
+INSERT INTO user_last_search (user_id) VALUES (1);
+INSERT INTO user_last_search (user_id) VALUES (2);
 
 
 COMMIT TRANSACTION;

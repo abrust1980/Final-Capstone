@@ -11,5 +11,11 @@ export default {
 
     addToReadingList(book) {
         return http.post(`/user/readinglist`, book);
+    },
+    getHasRead(isbn) {
+        return http.get(`/book/has-read/${isbn}`);
+    },
+    setHasRead(book) {
+        return http.put('/book/has-read', book);
     }
 }
