@@ -37,7 +37,7 @@ CREATE TABLE book_detail (
 	book_title varchar(255) not null,
 	publication_year bigint,
 	
-	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	
 );
 
