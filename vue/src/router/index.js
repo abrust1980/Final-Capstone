@@ -45,7 +45,7 @@ const router = new Router({
       name: "logout",
       component: Logout,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -77,7 +77,7 @@ const router = new Router({
       name: "addbook",
       component: NewBook,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

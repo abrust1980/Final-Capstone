@@ -5,6 +5,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <i class="material-icons" id="search-icon"  @click="isSearchShow = !isSearchShow">search</i>
     </div>
+        <div v-if="$store.state.token != ''" class="drop-zone" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
+            <router-link id="reading-list-link" v-bind:to="{ name: 'readinglist'}">My Reading List</router-link>
+            <h3 id="sidebar-caption">Drag book to sidebar to add</h3>
+                <drop-list-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />  
+    </div>
     <h2 class="search-label" v-show="isSearchShow">Search</h2>
     <div class="search-bar" v-show="isSearchShow">
         <input class="site-input" type="text" id="titleFilter" v-model="filter.bookTitle" placeholder="Title..."/>
@@ -14,14 +19,18 @@
         <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
     <div class="book-list">
-        <book-details v-for="book in bookList" v-bind:book="book" v-bind:key="book.isbn" />
+        <div id="book-cards" v-for="book in bookList" v-bind:key="book.isbn" draggable="true" @dragstart="startDrag(book, $event)" @dragover.prevent>
+        <book-details v-bind:book="book" />
+        </div>
     </div>
 </div>
 </template>
 
 <script>
 import booksService from "@/services/BooksService.js";
+import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
+import DropListDetails from "@/components/DropListDetails.vue";
 
 export default {
     name: "books-list",
@@ -38,10 +47,26 @@ export default {
       }
     },
     methods: {
+        addToReadingList(book) {
+            readingListService.addToReadingList(book).then(this.$store.commit("ADD_TO_READING_LIST", book));
+        },
         getBooks() {
             booksService.getBooks().then(response => {
                 this.$store.commit("SET_BOOKS_LIST", response.data);
             });
+        },
+        getReadingList() {
+            readingListService.getReadingList().then(response => {
+                this.$store.commit("SET_READING_LIST", response.data);
+            });
+        },
+        startDrag(item, evt) {
+             evt.dataTransfer.setData('bookID', item.isbn);
+         },
+        onDrop(evt) {
+            const itemID = evt.dataTransfer.getData('bookID');
+            const item = this.bookList.find(item => item.isbn == itemID);
+            this.addToReadingList(item);
         }
     },
     computed: {
@@ -68,12 +93,17 @@ export default {
                 book.publicationYear.toString().includes(this.filter.publicationYear));
             }
             return filteredList;
+        },
+        readingList() {
+            return this.$store.state.readingListBooks;
         }
     },
     components: {
-        BookDetails
+        BookDetails,
+        DropListDetails
     },
     created() {
+        this.getReadingList();
         this.getBooks();
     }
 }
@@ -87,9 +117,9 @@ export default {
     align-items: center;
 }
 .search-image-div {
-display: flex;
-justify-content: right;
-padding: 17px;
+    display: flex;
+    justify-content: right;
+    padding: 17px;
 }
 
 .material-icons {
@@ -140,5 +170,39 @@ padding: 17px;
     justify-content: center;
     align-items: center;
     font-size: 3em;
+}
+
+.drop-zone {
+    margin-top: 20px;
+    height: 840px;
+    width: 250px;
+    position: sticky;
+    top: 0px;
+    float: right;
+    background-color: #F78888;
+    border: 8px solid #d35a5a;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+}
+
+.drop-el {
+    padding: 5px;
+}
+
+#book-cards {
+    width: 30%;
+}
+
+#reading-list-link {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#sidebar-caption {
+    color: #7a2828;
 }
 </style>

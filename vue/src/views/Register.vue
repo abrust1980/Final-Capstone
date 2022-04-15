@@ -9,8 +9,8 @@
       <input
         type="text"
         id="username"
-        class="form-control"
-        placeholder="Username"
+        class="form-control siteinput"
+        placeholder="Username..."
         v-model="user.username"
         required
         autofocus
@@ -19,21 +19,21 @@
       <input
         type="password"
         id="password"
-        class="form-control"
-        placeholder="Password"
+        class="form-control siteinput"
+        placeholder="Password..."
         v-model="user.password"
         required
       />
       <input
         type="password"
         id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
+        class="form-control siteinput"
+        placeholder="Confirm Password..."
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <router-link :to="{ name: 'login' }" id="login-link">Have an account?</router-link>
+      <button class="btn btn-lg btn-primary btn-block register-button" type="submit">
         Create Account
       </button>
     </form>
@@ -90,4 +90,46 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.form-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .siteinput {
+    border: 5px solid #5DA2D5;
+    background-color: #ECECEC;
+    padding: 5px;
+    margin: 5px;
+    text-align: left;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+}
+
+.register-button {
+    border: 8px solid #5DA2D5;
+    background-color: #F3D250;
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    text-transform: uppercase;
+}
+
+label {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#login-link {
+  font-family: 'Comfortaa', cursive;
+  margin-top: 20px;
+  font-style: italic;
+}
+</style>

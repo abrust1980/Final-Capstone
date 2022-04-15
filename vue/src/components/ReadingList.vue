@@ -13,8 +13,10 @@
         <input class="site-input" type="text" id="isbnFilter" v-model="filter.isbn" placeholder="ISBN..."/>
         <input class="site-input" type="text" id="yearFilter" v-model="filter.publicationYear" placeholder="Publication Year..."/>
     </div>
-    <div class="reading-list">
-        <book-details v-for="book in readingList" v-bind:book="book" v-bind:key="book.isbn" />
+    <div class="reading-list" >
+        <div class="book-cards" v-for="book in readingList" v-bind:key="book.isbn">
+        <book-details  v-bind:book="book" />
+        </div>
     </div>
 </div>
 </template>
@@ -85,6 +87,7 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .search-image-div {
@@ -142,6 +145,10 @@ padding: 17px;
     justify-content: center;
     align-items: center;
     font-size: 3em;
+}
+
+.book-cards {
+    width: 30%;
 }
 
 </style>
