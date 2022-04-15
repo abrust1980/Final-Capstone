@@ -37,7 +37,7 @@ CREATE TABLE book_detail (
 	book_title varchar(255) not null,
 	publication_year bigint,
 	
-	book_added DATETIME DEFAULT CURRENT_DATE
+	book_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 	
 );
 
@@ -53,7 +53,7 @@ CREATE TABLE book_user (
 CREATE TABLE user_last_search (
 	user_login int DEFAULT nextval('seq_user_login'::regclass) NOT NULL,
 	user_id int,
-	last_search DATETIME DEFAULT CURRENT_DATE,
+	last_search TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	
 	constraint fk_user_last_search_user_id foreign key (user_id) references users (user_id)
 );
