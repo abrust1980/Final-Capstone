@@ -59,6 +59,9 @@ export default new Vuex.Store({
     },
     SET_USER_EMAILS(state, data) {
       state.userEmails = data;
+    },
+    SET_SEARCH_RESULTS(state, book) {
+      state.searchResults = JSON.stringify(book);
     }
   }
 })

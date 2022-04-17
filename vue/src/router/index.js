@@ -9,6 +9,8 @@ import Books from '../views/Books.vue'
 import Readinglist from '../views/Readinglist.vue'
 import NewBook from '../views/NewBook.vue'
 import NewBooks from '../views/NewBooks.vue'
+import Open from '../views/Open.vue'
+
 
 
 
@@ -36,6 +38,7 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    
     {
       path: "/login",
       name: "login",
@@ -92,6 +95,16 @@ const router = new Router({
         requiresAuth: true
       }
     },
+   {
+     path: "/search",
+     name: "search",
+     component: Open,
+     meta: {
+       requiresAuth: false
+     }
+   }
+    
+    
     
     
   ]
