@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     readingListBooks: [],
     allBooks: [],
-    lastSearchDate: ''
+    lastSearchDate: '',
+    userEmails: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -55,6 +56,9 @@ export default new Vuex.Store({
     },
     SET_SEARCH_DATE(state, data) {
       state.lastSearchDate = data;
+    },
+    SET_USER_EMAILS(state, data) {
+      state.userEmails = data;
     }
   }
 })
