@@ -10,6 +10,9 @@ import Readinglist from '../views/Readinglist.vue'
 import NewBook from '../views/NewBook.vue'
 import NewBooks from '../views/NewBooks.vue'
 
+
+
+
 Vue.use(Router)
 
 /**
@@ -88,7 +91,9 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    
+    
   ]
 })
 
