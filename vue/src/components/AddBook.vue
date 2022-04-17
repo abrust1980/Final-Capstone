@@ -1,13 +1,13 @@
 <template>
   <div id="submit">
     <h1> Add New Book </h1>
-    <form id="submit-book-form" v-on:submit.prevent="addNewBook()">
+    <form ref="form" id="submit-book-form" v-on:submit.prevent="addUserEmails(), addBookImage(), addNewBook()" @submit.prevent="sendEmail">
         <p>Book Title</p>
-        <input class="site-input" v-model="newBook.bookTitle" type="text" placeholder="Book Title...">
+        <input class="site-input" v-model="newBook.bookTitle" type="text" name="new_book_title" placeholder="Book Title...">
         <p>Author First Name</p>
-        <input class="site-input" v-model="newBook.firstName" type="text" placeholder="Author First Name...">
+        <input class="site-input" v-model="newBook.firstName" type="text" name="new_book_firstname" placeholder="Author First Name...">
         <p>Author Last Name</p>
-        <input class="site-input" v-model="newBook.lastName" type="text" placeholder="Author Last Name...">
+        <input class="site-input" v-model="newBook.lastName" type="text" name="new_book_lastname" placeholder="Author Last Name...">
         <p>ISBN Number</p>
         <input class="site-input" v-model="newBook.isbn" type="text" placeholder="ISBN...">
         <p>Publication Year</p>
@@ -18,7 +18,9 @@
 </template>
 
 <script>
+import UserService from '../services/UserService.js'
 import BooksService from '../services/BooksService.js'
+import emailjs from 'emailjs-com';
 
 export default {
     name: 'add-book',
@@ -29,21 +31,45 @@ export default {
                 lastName: "",
                 firstName: "",
                 bookTitle: "",
-                publicationYear: 0
+                publicationYear: 1900
+                }
             }
-        }
-    },
+        },
     methods: {
         addNewBook() {
             BooksService.addBook(this.newBook).then(this.$store.commit("ADD_BOOK", this.newBook));
+        },
+        addBookImage() {
+           this.newBook.bookImage = '<img src="http://covers.openlibrary.org/b/isbn/' + this.newBook.isbn + '-M.jpg" />'
+        },
+        getUserEmails() {
+            UserService.getAllEmails().then(response => {
+                this.$store.commit("SET_USER_EMAILS", response.data);
+            });
+        },
+        addUserEmails() {
+            let arr = this.$store.state.userEmails;
+            let str = arr.join(', ');
+            this.newBook.userEmails = str;
+        },
+        sendEmail() {
+            emailjs.send('new_book_alert', 'new_book_template', this.newBook, 'WhkA_CLUeQ-VXdMdt')
+            .then((result) => {
+                console.log('SUCCESS!', result.text);
+            }, (error) => {
+                console.log('FAILED...', error.text);
+            });
             this.newBook = {
-                isbn: "",
-                lastName: "",
-                firstName: "",
-                bookTitle: "",
-                publicationYear: 0
+               isbn: "",
+               lastName: "",
+               firstName: "",
+               bookTitle: "",
+               publicationYear: 0
             };
         }
+    },
+    created() {
+        this.getUserEmails();
     }
 }
 </script>

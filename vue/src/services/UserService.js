@@ -10,5 +10,8 @@ export default {
     },
     updateLastSearchDate() {
         return http.put('/user/search-date')
+    },
+    getAllEmails() {
+        return http.get('/user-emails')
     }
 }
