@@ -4,16 +4,15 @@ package com.techelevator.controller;
 import com.techelevator.dao.UserDao;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 
 @PreAuthorize("isAuthenticated()")
+@CrossOrigin
 @RestController
 public class UserController {
 
@@ -32,5 +31,10 @@ public class UserController {
     public void setLastSearchDate (Principal principal){
         int id = userDao.findIdByUsername(principal.getName());
         userDao.setLastSearchDate(id);
+    }
+
+    @RequestMapping(path = "/user-emails", method = RequestMethod.GET)
+    public List<String> getAllUserEmails() {
+        return userDao.findAllEmails();
     }
 }

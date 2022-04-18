@@ -20,5 +20,7 @@ public interface UserDao {
 
     Date getLastSearchDate (int userId);
 
+    List<String> findAllEmails();
+
     boolean create(String username, String password, String role);
 }

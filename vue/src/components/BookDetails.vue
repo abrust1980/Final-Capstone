@@ -1,18 +1,20 @@
 <template>
+<div>
 <div class="details">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
     <h2 id="read-indicator" v-if="hasRead">MARKED AS READ</h2>
     <h2 class="book-title">{{book.bookTitle}}</h2>
-    <h3>{{book.firstName}}&nbsp;{{book.lastName}}</h3>
+    <h3 class="author">{{book.firstName}}&nbsp;{{book.lastName}}</h3>
     <img class="book-image" v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
     <p>ISBN</p>
     <h3>{{book.isbn}}</h3>
     <p>YEAR PUBLISHED</p>
     <h3>{{book.publicationYear}}</h3>
     <a href="#" class="add-button" v-if="$store.state.token != ''" v-on:click="addToReadingList(book)">Add to Reading List</a>
-    <a href="#" class="add-button" v-if="$store.state.token != '' && !hasRead" id="read-button" v-on:click="markAsRead(book)">Mark as Read</a>
+    <a href="#" class="mark-button" v-if="$store.state.token != '' && !hasRead" id="read-button" v-on:click="markAsRead(book)">Mark as Read</a>
+</div>
 </div>
 </template>
 
@@ -58,16 +60,25 @@ export default {
     margin: 20px;
     font-family: 'Comfortaa', cursive;
     text-align: center;
-    width: 70%
+    width: 70%;
+    
+    border-radius: 15px 15px 15px 15px;
+    flex: 1 1 0px;
 }
 
 .book-image {
-    height: 15vw;
+    height: 10vw;
     border: 5px solid #bb9d26;
     margin-bottom: 10px;
 }
 
 .book-title {
+    height: 4vw;
+    padding-bottom: 10px;
+}
+
+.book-author {
+    height: 3vw;
     padding-bottom: 10px;
 }
 
@@ -76,6 +87,14 @@ export default {
     border: 5px solid #d35a5a;
     padding: 10px;
     text-transform: uppercase;
+    border-radius: 15px 15px 15px 15px;
+}
+.mark-button {
+    background-color: #F78888;
+    border: 5px solid #d35a5a;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 15px 15px 15px 15px;
 }
 
 h2 {

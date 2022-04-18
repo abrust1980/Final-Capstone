@@ -84,6 +84,18 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<String> findAllEmails() {
+        List<String> emails = new ArrayList<>();
+        String sql = "SELECT email FROM users WHERE email IS NOT NULL";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()) {
+            emails.add(results.getString("email"));
+        }
+        return emails;
+    }
+
+    @Override
     public User findByUsername(String username) {
         if(username == null) throw new IllegalArgumentException("Username cannot be null");
 

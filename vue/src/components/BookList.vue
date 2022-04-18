@@ -119,6 +119,11 @@ export default {
 </script>
 
 <style>
+#book-cards {
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
 .book-list {
     display: flex;
     flex-wrap: wrap;
@@ -203,7 +208,7 @@ export default {
 }
 
 #book-cards {
-    width: 30%;
+    width: 80%;
 }
 
 #reading-list-link {
