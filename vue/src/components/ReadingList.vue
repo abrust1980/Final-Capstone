@@ -18,6 +18,7 @@
         <book-details  v-bind:book="book" />
         </div>
     </div>
+    <div>From the books in your list, it appears that you enjoy scifi. Click here to see more suggestions.</div>
 </div>
 </template>
 
