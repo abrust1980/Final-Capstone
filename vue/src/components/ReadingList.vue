@@ -17,7 +17,7 @@
         <div class="book-cards" v-for="book in readingList" v-bind:key="book.isbn">
         <book-details  v-bind:book="book">
         </book-details>
-        <button id = "mark-read" v-on:click="markAsRead(book)">I want to Die</button>
+        <button id = "mark-read" v-on:click="markAsRead(book)">Mark as Read</button>
         </div>
     </div>
     <div class="predictive">
