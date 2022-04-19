@@ -16,6 +16,7 @@ export default {
         return http.get(`/book/has-read/${isbn}`);
     },
     setHasRead(book) {
+        console.log(book);
         return http.put('/book/has-read', book);
     }
 }

@@ -43,7 +43,11 @@ export default {
         readingListService.getHasRead(this.book.isbn).then((response) => {
             this.hasRead = response.data;
         })
-    }
+    },
+    updated(){
+       
+    },
+
 }
 </script>
 

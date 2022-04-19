@@ -17,7 +17,7 @@
         <div class="book-cards" v-for="book in readingList" v-bind:key="book.isbn">
         <book-details  v-bind:book="book">
         </book-details>
-        <button id = "mark-read" v-on:click="BookDetails.markAsRead(this.book)">I want to Die</button>
+        <button id = "mark-read" v-on:click="markAsRead(book)">I want to Die</button>
         </div>
     </div>
     <div>From the books in your list, it appears that you enjoy scifi. Click here to see more suggestions.</div>
@@ -27,6 +27,7 @@
 <script>
 import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
+
 
 export default {
     name: "reading-list",
@@ -46,11 +47,14 @@ export default {
         getReadingList() {
             readingListService.getReadingList().then(response => {
                 this.$store.commit("SET_READING_LIST", response.data);
+                
             });
         },
 
         markAsRead(book) {
-            readingListService.setHasRead(book).then(this.hasRead = true)
+            readingListService.setHasRead(book).then(this.hasRead = true);
+            this.$router.go(0);
+            
         },
 
         appendButton(){
@@ -59,6 +63,7 @@ export default {
            
         
     },
+ 
     computed: {
         readingList() {
             let filteredList = this.$store.state.readingListBooks;
@@ -83,14 +88,22 @@ export default {
                 book.publicationYear.toString().includes(this.filter.publicationYear));
             }
             return filteredList;
-        }
+        },
+
+
     },
     components: {
         BookDetails
     },
     created() {
-        this.getReadingList();
-    }
+     
+    },
+    mounted() {
+    this.$nextTick(function () {
+    
+  })
+},
+   
 }
 </script>
 
