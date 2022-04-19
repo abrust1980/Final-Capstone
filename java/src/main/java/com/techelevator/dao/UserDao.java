@@ -22,5 +22,9 @@ public interface UserDao {
 
     List<String> findAllEmails();
 
-    boolean create(String username, String password, String role);
+    boolean create(String username, String password, String role, String email);
+
+    void deleteUserEmail(Principal principal);
+
+    void updateUserEmail(String email, Principal principal);
 }

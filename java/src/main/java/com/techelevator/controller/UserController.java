@@ -37,4 +37,14 @@ public class UserController {
     public List<String> getAllUserEmails() {
         return userDao.findAllEmails();
     }
+
+    @RequestMapping(path = "/user/delete-email", method = RequestMethod.PUT)
+    public void removeUserEmail (Principal principal) {
+        userDao.deleteUserEmail(principal);
+    }
+
+    @RequestMapping(path = "/user/update-email", method = RequestMethod.PUT)
+    public void updateUserEmail (Principal principal, @RequestBody String email) {
+        userDao.updateUserEmail(email, principal);
+    }
 }

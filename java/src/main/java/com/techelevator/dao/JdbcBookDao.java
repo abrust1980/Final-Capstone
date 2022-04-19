@@ -113,7 +113,7 @@ public class JdbcBookDao implements BookDao {
             book.setBookTitle(row.getString("book_title"));
             book.setPublicationYear(row.getInt("publication_year"));
             book.setBookAdded(row.getTimestamp("book_added"));
-            
+
 
 
             return book;

@@ -60,10 +60,6 @@ export default new Vuex.Store({
     SET_USER_EMAILS(state, data) {
       state.userEmails = data;
     },
-
-    SET_MARK_READ(state, book) {
-      state.markRead = book;
-    }
     
   }
 })

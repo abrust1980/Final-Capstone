@@ -12,7 +12,7 @@ import ReadingListService from '../services/ReadingListService'
 
 export default {
     components: {
-        ReadingList
+        ReadingList,
         
     },
 

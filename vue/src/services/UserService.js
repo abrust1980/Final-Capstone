@@ -1,4 +1,5 @@
 import axios from 'axios';
+const config = { headers: {'Content-Type': 'application/json'} };
 
 const http = axios.create({
     baseURL: "http://localhost:8080"
@@ -13,5 +14,11 @@ export default {
     },
     getAllEmails() {
         return http.get('/user-emails')
+    },
+    deleteUserEmail() {
+        return http.put('/user/delete-email')
+    },
+    updateUserEmail(email) {
+        return http.put('/user/update-email', email, config)
     }
 }
