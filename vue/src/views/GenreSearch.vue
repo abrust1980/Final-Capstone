@@ -2,19 +2,7 @@
   <div id="app">
     <h1>Extended Book Search</h1>
     <div class="query">
-      <form @submit.prevent="search">
-        <div>
-          <input type="text" v-model="keyword" placeholder="Search..." class="input" required>
-          <input type="submit" value="Search" class="button">
-        </div>
-        <div>
-          <label for="order">Order by</label>&nbsp;
-          <select name="order" v-model="orderBy" @change="search">
-            <option value="newest">newest</option>
-            <option value="relevance">relevance</option>
-          </select>
-        </div>
-      </form>
+      
     </div>
     <div class="content">
       <div class="loading" v-if="loadState == 'loading'"></div>
@@ -26,6 +14,7 @@
 <script>
 import OpenList from '@/components/OpenList'
 import axios from 'axios'
+import booksService from '@/services/BooksService'
 
 
 const newAxiosInstanceAgain = axios.create();
@@ -37,29 +26,46 @@ export default {
     return {
       books: [],
       keyword: '',
-      orderBy: 'newest',
       maxResults: '15',
-      loadState: ''
+      loadState: '',
+      
     }
   },
-  methods: {
-    search() {
-      this.loadState = 'loading'
+  
+  components: {
+    OpenList
+  },
+  created() {
+      booksService.showGenre().then( response => {
+                this.keyword = response.data;
+                console.log(this.keyword)
+                this.loadState = 'loading'
       newAxiosInstanceAgain
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=incategories:${
-            this.keyword
-          }&key=AIzaSyCCrHonW6kTcLgQ3Qv261Ptj8bFit83EkE=${this.orderBy}&maxResults=${this.maxResults}`
+          `https://www.googleapis.com/books/v1/volumes?q=${this.keyword}
+            &key=AIzaSyCCrHonW6kTcLgQ3Qv261Ptj8bFit83EkE&maxResults=${this.maxResults}`
         )
         .then(response => {
+          console.log(this.keyword)
           console.log(response.data.items)
           this.books = response.data.items
           this.loadState = 'success'
         })
-    }
-  },
-  components: {
-    OpenList
+            }).catch (err => console.error(err))
+      
+    //   this.loadState = 'loading'
+    //   newAxiosInstanceAgain
+    //     .get(
+    //       `https://www.googleapis.com/books/v1/volumes?q=incategories:${this.keyword}
+    //         &key=AIzaSyDFmqAhmYt_gAa_aIdeWz_NvFF4Lg1mi8E&orderBy=newest&maxResults=${this.maxResults}`
+    //     )
+    //     .then(response => {
+    //       console.log(this.keyword)
+    //       console.log(response.data.items)
+    //       this.books = response.data.items
+    //       this.loadState = 'success'
+    //     })
+    
   }
 }
 </script>

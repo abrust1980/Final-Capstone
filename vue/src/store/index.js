@@ -59,7 +59,7 @@ export default new Vuex.Store({
     },
     SET_USER_EMAILS(state, data) {
       state.userEmails = data;
-    }
+    },
     
   }
 })

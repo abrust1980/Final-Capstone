@@ -11,7 +11,7 @@ import ReadingList from '../components/ReadingList.vue'
 
 export default {
     components: {
-        ReadingList
+        ReadingList,
         
     }
 }

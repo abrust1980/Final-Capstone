@@ -10,7 +10,8 @@ import Readinglist from '../views/Readinglist.vue'
 import NewBook from '../views/NewBook.vue'
 import NewBooks from '../views/NewBooks.vue'
 import Open from '../views/Open.vue'
-
+import Genre from '../views/Genre.vue'
+import GenreSearch from '../views/GenreSearch.vue'
 
 
 
@@ -102,8 +103,23 @@ const router = new Router({
      meta: {
        requiresAuth: false
      }
-   }
-   
+   },
+  {
+    path: "/user/genre",
+    name: "genre",
+    component: Genre,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/user/genresearch",
+    name: "genresearch",
+    component: GenreSearch,
+    meta: {
+      requiresAuth: true
+    }
+  }
     
     
     
