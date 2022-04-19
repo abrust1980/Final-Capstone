@@ -15,7 +15,9 @@
     </div>
     <div class="reading-list" >
         <div class="book-cards" v-for="book in readingList" v-bind:key="book.isbn">
-        <book-details  v-bind:book="book" />
+        <book-details  v-bind:book="book">
+        </book-details>
+        <button id = "mark-read" v-on:click="BookDetails.markAsRead(this.book)">I want to Die</button>
         </div>
     </div>
 </div>
@@ -44,7 +46,17 @@ export default {
             readingListService.getReadingList().then(response => {
                 this.$store.commit("SET_READING_LIST", response.data);
             });
+        },
+
+        markAsRead(book) {
+            readingListService.setHasRead(book).then(this.hasRead = true)
+        },
+
+        appendButton(){
+            
         }
+           
+        
     },
     computed: {
         readingList() {
@@ -99,6 +111,14 @@ padding: 17px;
 .material-icons {
    color: #37464a;
    font-size: 60px !important;
+}
+
+#mark-read {
+    display: flex;
+    margin-left: 40%;
+    margin-top: -60px;
+    margin-bottom: 60px;
+
 }
 
 #search-icon {
