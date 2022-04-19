@@ -28,8 +28,10 @@ import OpenList from '@/components/OpenList'
 import axios from 'axios'
 
 
-const newAxiosInstance = axios.create();
-
+const newAxiosInstanceAgain = axios.create();
+// const API_KEY= 'AIzaSyASnNpFjjiEB5ZpEnnByPSZ8x5LF0yZy_Q';
+delete newAxiosInstanceAgain.defaults.headers.common['Authorization']
+//This code removes the bearer token, allowing us to access google api
 export default {
   data() {
     return {
@@ -43,11 +45,11 @@ export default {
   methods: {
     search() {
       this.loadState = 'loading'
-      newAxiosInstance
+      newAxiosInstanceAgain
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=intitle:${
+          `https://www.googleapis.com/books/v1/volumes?q=incategories:${
             this.keyword
-          }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
+          }&key=AIzaSyDFmqAhmYt_gAa_aIdeWz_NvFF4Lg1mi8E&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
         )
         .then(response => {
           console.log(response.data.items)

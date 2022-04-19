@@ -44,6 +44,12 @@ public class ReadingListController {
 
     // This is the code for checking for read book
 
+    @RequestMapping(path="/user/genre", method = RequestMethod.GET)
+    public String showFavoriteGenre(Principal principal) {
+        Long userId = bookDao.getIdByUsername(principal);
+        return bookDao.favoriteGenre(userId);
+
+    }
 
     @RequestMapping(path="/book/has-read", method = RequestMethod.PUT)
     public void hasRead (@RequestBody Book book, Principal principal){

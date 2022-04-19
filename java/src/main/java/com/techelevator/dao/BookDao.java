@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.Genre;
 
 import java.security.Principal;
 import java.util.List;
@@ -14,5 +15,6 @@ public interface BookDao {
     Long getIdByUsername(Principal principal);
     void hasRead (Long id, String isbn);
     boolean hasReadValue(Long id, String isbn);
+    String favoriteGenre(Long id);
 
 }

@@ -20,6 +20,7 @@
         <button id = "mark-read" v-on:click="BookDetails.markAsRead(this.book)">I want to Die</button>
         </div>
     </div>
+    <div>From the books in your list, it appears that you enjoy scifi. Click here to see more suggestions.</div>
 </div>
 </template>
 

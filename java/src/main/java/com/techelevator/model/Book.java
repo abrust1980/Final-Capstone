@@ -13,18 +13,20 @@ public class Book {
     private String bookTitle;
     private int publicationYear;
     private Timestamp bookAdded;
+    private String genre;
 
 
     public Book() {
     }
 
-    public Book(String isbn, String lastName, String firstName, String bookTitle, int publicationYear, Timestamp bookAdded) {
+    public Book(String isbn, String lastName, String firstName, String bookTitle, int publicationYear, Timestamp bookAdded, String genre) {
         this.isbn = isbn;
         this.lastName = lastName;
         this.firstName = firstName;
         this.bookTitle = bookTitle;
         this.publicationYear = publicationYear;
         this.bookAdded = bookAdded;
+        this.genre = genre;
 
     }
 
@@ -76,5 +78,11 @@ public class Book {
         this.bookAdded = bookAdded;
     }
 
+    public String getGenre() {
+        return genre;
+    }
 
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }
