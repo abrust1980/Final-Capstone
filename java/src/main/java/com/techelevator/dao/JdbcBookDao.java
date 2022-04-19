@@ -49,7 +49,10 @@ public class JdbcBookDao implements BookDao {
     public boolean hasReadValue(Long id, String isbn) {
         boolean hasRead = false;
         String sql = "SELECT has_read FROM book_user WHERE user_id = ? AND isbn_number = ?";
-        hasRead = jdbcTemplate.queryForObject(sql, Boolean.class, id, isbn);
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id, isbn);
+        if (rowSet.next()){
+            hasRead = rowSet.getBoolean("has_read");
+        }
         return hasRead;
 
 

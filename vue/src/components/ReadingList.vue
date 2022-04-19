@@ -15,7 +15,9 @@
     </div>
     <div class="reading-list" >
         <div class="book-cards" v-for="book in readingList" v-bind:key="book.isbn">
-        <book-details  v-bind:book="book" />
+        <book-details  v-bind:book="book">
+        </book-details>
+        <button id = "mark-read" v-on:click="markAsRead(book)">Mark as Read</button>
         </div>
     </div>
     <div class="predictive">
@@ -28,6 +30,7 @@
 import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
 import Genre from "@/views/Genre.vue"
+
 
 export default {
     name: "reading-list",
@@ -47,9 +50,23 @@ export default {
         getReadingList() {
             readingListService.getReadingList().then(response => {
                 this.$store.commit("SET_READING_LIST", response.data);
+                
             });
+        },
+
+        markAsRead(book) {
+            readingListService.setHasRead(book).then(this.hasRead = true);
+            this.$router.go(0);
+            
+        },
+
+        appendButton(){
+            
         }
+           
+        
     },
+ 
     computed: {
         readingList() {
             let filteredList = this.$store.state.readingListBooks;
@@ -74,15 +91,23 @@ export default {
                 book.publicationYear.toString().includes(this.filter.publicationYear));
             }
             return filteredList;
-        }
+        },
+
+
     },
     components: {
         BookDetails,
         Genre
     },
     created() {
-        this.getReadingList();
-    }
+     
+    },
+    mounted() {
+    this.$nextTick(function () {
+    
+  })
+},
+   
 }
 </script>
 
@@ -104,6 +129,14 @@ padding: 17px;
 .material-icons {
    color: #37464a;
    font-size: 60px !important;
+}
+
+#mark-read {
+    display: flex;
+    margin-left: 40%;
+    margin-top: -60px;
+    margin-bottom: 60px;
+
 }
 
 #search-icon {

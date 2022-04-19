@@ -13,7 +13,6 @@
     <p>YEAR PUBLISHED</p>
     <h3>{{book.publicationYear}}</h3>
     <a href="#" class="add-button" v-if="$store.state.token != ''" v-on:click="addToReadingList(book)">Add to Reading List</a>
-    <a href="#" class="mark-button" v-if="$store.state.token != '' && !hasRead" id="read-button" v-on:click="markAsRead(book)">Mark as Read</a>
 </div>
 </div>
 </template>
@@ -44,7 +43,11 @@ export default {
         readingListService.getHasRead(this.book.isbn).then((response) => {
             this.hasRead = response.data;
         })
-    }
+    },
+    updated(){
+       
+    },
+
 }
 </script>
 
