@@ -2,7 +2,7 @@
   <div>
       
       <h1>Want More?</h1>
-      <h2>You may be interested in more {{ genreinfo}} books. Click <router-link :to="{ name: 'genresearch' }">here</router-link> to see the 
+      <h2>You may be interested in more {{ genreinfo}} books. Click <router-link class="genre-link" :to="{ name: 'genresearch' }">here</router-link> to see the 
           newest titles!
       </h2>
       
@@ -35,5 +35,8 @@ export default {
 </script>
 
 <style>
+.genre-link:hover {
+    color: rgb(218, 60, 86)
 
+}
 </style>

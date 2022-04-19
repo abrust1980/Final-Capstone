@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Extended Book Search</h1>
+    <h1>Looking For More?</h1>
     <div class="query">
       <form @submit.prevent="search">
         <div>
@@ -49,7 +49,7 @@ export default {
         .get(
           `https://www.googleapis.com/books/v1/volumes?q=incategories:${
             this.keyword
-          }&key=AIzaSyCCrHonW6kTcLgQ3Qv261Ptj8bFit83EkE=${this.orderBy}&maxResults=${this.maxResults}`
+          }&key=AIzaSyCCrHonW6kTcLgQ3Qv261Ptj8bFit83EkE&orderBy${this.orderBy}&maxResults=${this.maxResults}`
         )
         .then(response => {
           console.log(response.data.items)

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Extended Book Search</h1>
+    <h1>Explore more {{this.keyword}} books</h1>
     <div class="query">
       
     </div>

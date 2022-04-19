@@ -23,6 +23,7 @@
         <book-details v-bind:book="book" />
         </div>
     </div>
+    <open />
 </div>
 </template>
 
@@ -32,6 +33,7 @@ import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
 import DropListDetails from "@/components/DropListDetails.vue";
 import userService from "@/services/UserService.js";
+import Open from "@/views/Open.vue";
 
 export default {
     name: "books-list",
@@ -109,7 +111,8 @@ export default {
     },
     components: {
         BookDetails,
-        DropListDetails
+        DropListDetails,
+        Open
     },
     created() {
         this.getReadingList();

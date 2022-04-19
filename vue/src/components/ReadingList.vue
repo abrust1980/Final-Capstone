@@ -157,7 +157,7 @@ padding: 17px;
 }
 .predictive {
   display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 40px;
@@ -166,7 +166,8 @@ padding: 17px;
     margin: 20px;
     font-family: 'Comfortaa', cursive;
     text-align: center;
-    width: 100%;
+    margin-left: 50px;
+    width: 90%;
     
     border-radius: 15px 15px 15px 15px;
     flex: 1 1 0px;  
