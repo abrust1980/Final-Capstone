@@ -10,5 +10,9 @@ export default {
     },
     addBook(book) {
         return http.post('/archive', book);
+    },
+    showGenre() {
+        return http.get('/user/genre');
     }
+    
 }

@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.Genre;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -76,10 +77,29 @@ public class JdbcBookDao implements BookDao {
         return usersBooks;
     }
 
+        public String favoriteGenre(Long id) {
+
+        String sql = "SELECT book_genre FROM book_detail " +
+            "JOIN book_user ON book_detail.isbn_number=book_user.isbn_number " +
+            "GROUP BY book_genre, user_id HAVING user_id = ? ORDER BY COUNT(book_genre) DESC LIMIT 1;";
+
+        String genre = jdbcTemplate.queryForObject(sql, String.class, id);
+        return genre;
+
+    }
+
         public void addBookToList (Book book){
             String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) " +
                     "VALUES (?, ?, ?, ?, ?);";
             jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn());
+        }
+
+        private Genre mapRowToGenre (SqlRowSet row) {
+        Genre genreType = new Genre();
+        genreType.setGenre(row.getString("book_genre"));
+        genreType.setCount(row.getLong("the_count"));
+
+        return genreType;
         }
 
         private Book mapRowToBook (SqlRowSet row){
@@ -90,6 +110,7 @@ public class JdbcBookDao implements BookDao {
             book.setBookTitle(row.getString("book_title"));
             book.setPublicationYear(row.getInt("publication_year"));
             book.setBookAdded(row.getTimestamp("book_added"));
+
 
 
             return book;

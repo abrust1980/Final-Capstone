@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Extended Book Search</h1>
+    <h1>Looking For More?</h1>
     <div class="query">
       <form @submit.prevent="search">
         <div>
@@ -28,8 +28,10 @@ import OpenList from '@/components/OpenList'
 import axios from 'axios'
 
 
-const newAxiosInstance = axios.create();
-
+const newAxiosInstanceAgain = axios.create();
+// const API_KEY= 'AIzaSyASnNpFjjiEB5ZpEnnByPSZ8x5LF0yZy_Q';
+delete newAxiosInstanceAgain.defaults.headers.common['Authorization']
+//This code removes the bearer token, allowing us to access google api
 export default {
   data() {
     return {
@@ -43,11 +45,11 @@ export default {
   methods: {
     search() {
       this.loadState = 'loading'
-      newAxiosInstance
+      newAxiosInstanceAgain
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=intitle:${
+          `https://www.googleapis.com/books/v1/volumes?q=incategories:${
             this.keyword
-          }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
+          }&key=AIzaSyCCrHonW6kTcLgQ3Qv261Ptj8bFit83EkE&orderBy${this.orderBy}&maxResults=${this.maxResults}`
         )
         .then(response => {
           console.log(response.data.items)

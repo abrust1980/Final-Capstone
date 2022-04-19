@@ -68,10 +68,18 @@ INSERT INTO users (username,password_hash,role) VALUES ('testuser2','$2a$08$UkVv
 
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Day', 'Felicia', 'Embrace Your Weird', 2019, '9781982113223', 'humor');
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Murakami', 'Haruki', 'Kafka by the Shore', 2006, '9781400079278', 'fantasy');
-INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Carey', 'M.R.', 'The Girl With All the Gifts', 2014, '9780356500157', 'science-fiction');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Carey', 'M.R.', 'The Girl With All the Gifts', 2014, '9780356500157', 'scifi');
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Hemingway', 'Ernest', 'The Old Man and the Sea', 1996, '9780684830490', 'literature');
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('de Saint-Exupéry', 'Antoine', 'Le Petit Prince', 1997, '9783125971400', 'juvenile_fiction');
-INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Atwood', 'Margaret', 'The Testaments', 2019, '9780385543781', 'science-fiction');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Herbert', 'Frank', 'Dune', 1965, '9780593099322', 'scifi');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Card', 'Orson Scott', 'Ender''s Game', 1985, '9780812550702', 'scifi');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Adams', 'Douglas', 'The Hitchhiker''s Guide to the Galaxy ', 1979, '9781400052929', 'scifi');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Weir', 'Andy', 'The Martian', 2011, '9780804139021', 'scifi');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Bradbury', 'Ray', 'Fahrenheit 451', 1953, '9780307347978', 'scifi');
+
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Goldman', 'William', 'The Princess Bride', 1973, '9780345418265', 'fantasy');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Pullman', 'Philip', 'The Golden Compass', 1995, '9780679879244', 'fantasy');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Atwood', 'Margaret', 'The Testaments', 2019, '9780385543781', 'scifi');
 
 INSERT INTO book_user (user_id, isbn_number) VALUES (1, '9781400079278');
 INSERT INTO book_user (user_id, isbn_number) VALUES (1, '9780356500157');

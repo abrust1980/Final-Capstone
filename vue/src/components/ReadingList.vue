@@ -18,12 +18,16 @@
         <book-details  v-bind:book="book" />
         </div>
     </div>
+    <div class="predictive">
+    <Genre />
+    </div>
 </div>
 </template>
 
 <script>
 import readingListService from "@/services/ReadingListService.js";
 import BookDetails from "@/components/BookDetails.vue";
+import Genre from "@/views/Genre.vue"
 
 export default {
     name: "reading-list",
@@ -73,7 +77,8 @@ export default {
         }
     },
     components: {
-        BookDetails
+        BookDetails,
+        Genre
     },
     created() {
         this.getReadingList();
@@ -149,6 +154,23 @@ padding: 17px;
 
 .book-cards {
     width: 30%;
+}
+.predictive {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border: 8px solid #5DA2D5;
+    background-color: #F3D250;
+    margin: 20px;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    margin-left: 50px;
+    width: 90%;
+    
+    border-radius: 15px 15px 15px 15px;
+    flex: 1 1 0px;  
 }
 
 </style>
