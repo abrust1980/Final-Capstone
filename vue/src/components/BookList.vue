@@ -1,5 +1,6 @@
 <template>
 <div>
+    <div>
     <h1 class="page-name">All Books</h1>
     <div class="search-image-div">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,6 +23,7 @@
         <div id="book-cards" v-for="book in bookList" v-bind:key="book.isbn" draggable="true" @dragstart="startDrag(book, $event)" @dragover.prevent>
         <book-details v-bind:book="book" />
         </div>
+    </div>
     </div>
     <open />
 </div>
@@ -191,8 +193,8 @@ export default {
 
 .drop-zone {
     margin-top: 20px;
-    height: 840px;
-    width: 250px;
+    height: 850px;
+    width: 15%;
     position: sticky;
     top: 0px;
     float: right;

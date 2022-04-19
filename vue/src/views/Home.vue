@@ -6,8 +6,6 @@
     
     <div id="welcome">
       <header class="aligning-page"><span>Welcome </span> to Pocket Librarian</header>
-      <!-- <router-link class="aligning-text"  v-bind:to="{name:'archive'}"> Check out our book collection</router-link> -->
-
     </div>
     
   </div>
@@ -35,7 +33,8 @@ export default {
   background-color: #90CCF4; 
   display: flex;
   flex-basis: 30%;
-  
+  justify-content: center;
+  align-items: center;
 }
 .aligning-page {
   text-align: center;
@@ -46,8 +45,8 @@ export default {
 
 
 .aligning-page span {
-  color: coral;
-
+  color: #F3D250;
+  text-shadow: 2px 0 0 #37464a, -2px 0 0 #37464a, 0 2px 0 #37464a, 0 -2px 0 #37464a, 1px 1px #37464a, -1px -1px 0 #37464a, 1px -1px 0 #37464a, -1px 1px 0 #37464a;
 }
 
 

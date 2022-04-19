@@ -29,6 +29,7 @@
   font-family: 'Comfortaa', cursive;
   font-size: 1.5em;
   border-bottom: 8px solid #37464a;
+  height: 14.3vh;
 }
 
 body {
