@@ -11,4 +11,5 @@ export default {
     addBook(book) {
         return http.post('/archive', book);
     }
+    
 }
