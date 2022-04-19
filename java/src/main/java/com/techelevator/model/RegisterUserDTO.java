@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class RegisterUserDTO {
 
+    private String email;
     @NotEmpty
     private String username;
     @NotEmpty
@@ -27,6 +28,14 @@ public class RegisterUserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getConfirmPassword() {

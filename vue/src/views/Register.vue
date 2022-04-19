@@ -32,6 +32,20 @@
         v-model="user.confirmPassword"
         required
       />
+      <div class="tooltip">
+      <label for="email" class="sr-only"><span style="color: #d35a5a;">(Optional)</span> E-mail Address</label>
+      <p class="tooltiptext">Your e-mail will be used to send you updates on
+      new books added to our database. You can opt
+      out at any time.</p>
+      <input
+        type="text"
+        id="email"
+        class="form-control siteinput"
+        placeholder="Email..."
+        v-model="user.email"
+        autofocus
+      />
+      </div>
       <router-link :to="{ name: 'login' }" id="login-link">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block register-button" type="submit">
         Create Account
@@ -51,6 +65,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
+        email: null,
         role: 'user',
       },
       registrationErrors: false,
@@ -132,4 +147,41 @@ label {
   margin-top: 20px;
   font-style: italic;
 }
+
+.tooltip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #37464a;
+  color: #ECECEC;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px ;
+
+  position: absolute;
+  z-index: 1;
+  left: 105%;
+  top: -4rem;
+}
+
+.tooltip:hover .tooltiptext{
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #37464a transparent transparent;
+}
+
 </style>

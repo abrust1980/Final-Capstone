@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,6 +60,18 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public void deleteUserEmail(Principal principal) {
+        String sql = "UPDATE users SET email = null WHERE username = ?";
+        jdbcTemplate.update(sql, principal.getName());
+    }
+
+    @Override
+    public void updateUserEmail(String email, Principal principal) {
+        String sql = "UPDATE users SET email = ? WHERE username = ?";
+        jdbcTemplate.update(sql, email, principal.getName());
+    }
+
+    @Override
 	public User getUserById(Long userId) {
 		String sql = "SELECT * FROM users WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -108,11 +121,11 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
+    public boolean create(String username, String password, String role, String email) {
         boolean userCreated = false;
 
         // create user
-        String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
+        String insertUser = "insert into users (username,password_hash,role,email) values(?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
@@ -123,6 +136,7 @@ public class JdbcUserDao implements UserDao {
                     ps.setString(1, username);
                     ps.setString(2, password_hash);
                     ps.setString(3, ssRole);
+                    ps.setString(4, email);
                     return ps;
                 }
                 , keyHolder) == 1;

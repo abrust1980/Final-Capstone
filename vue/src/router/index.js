@@ -8,8 +8,8 @@ import store from '../store/index'
 import Books from '../views/Books.vue'
 import Readinglist from '../views/Readinglist.vue'
 import NewBook from '../views/NewBook.vue'
-import NewBooks from '../views/NewBooks.vue'
 import Open from '../views/Open.vue'
+import Settings from '../views/Settings.vue'
 
 
 
@@ -87,14 +87,6 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: "/user/newbooks",
-      name: "newbooks",
-      component: NewBooks,
-      meta: {
-        requiresAuth: true
-      }
-    },
    {
      path: "/search",
      name: "search",
@@ -102,11 +94,15 @@ const router = new Router({
      meta: {
        requiresAuth: false
      }
+   },
+   {
+     path: "/user/settings",
+    name: "settings",
+    component: Settings,
+    meta: {
+      requiresAuth: true
+    }
    }
-    
-    
-    
-    
   ]
 })
 
