@@ -21,7 +21,7 @@
             <option value="fantasy">Fantasy</option>
             <option value="horror">Horror</option>
             <option value="romance">Romance</option>
-            <option value="biography">Biography</option>
+            <option value="biographies">Biography</option>
             <option value="true_crime">True Crime</option>
             <option value="other">Other</option>
             </select>
