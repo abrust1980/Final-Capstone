@@ -7,7 +7,9 @@
     <h2 id="read-indicator" v-if="hasRead">MARKED AS READ</h2>
     <h2 class="book-title">{{book.bookTitle}}</h2>
     <h3 class="author">{{book.firstName}}&nbsp;{{book.lastName}}</h3>
+    <a :href="'https://openlibrary.org/isbn/' + book.isbn" target="_blank">
     <img class="book-image" v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    </a>
     <p>ISBN</p>
     <h3>{{book.isbn}}</h3>
     <p>YEAR PUBLISHED</p>
@@ -19,6 +21,7 @@
 
 <script>
 import readingListService from '../services/ReadingListService.js'
+
 
 export default {
     name: 'book-details',
