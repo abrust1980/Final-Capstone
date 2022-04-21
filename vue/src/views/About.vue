@@ -1,7 +1,7 @@
 <template>
   <div>
 
-      <!-- <h1>About Your Librarians</h1> -->
+      <h1>About Your Librarians</h1>
      
   <div class="bio">
     <img src="../assets/alex.jpg" />
@@ -96,19 +96,19 @@ export default {
     font-size: 2rem;
     font-family: 'Comfortaa', cursive;
 }
-div.bio:nth-child(1) {
+div.bio:nth-child(2) {
   display: flex;
 }
 
-div.bio:nth-child(2) {
+div.bio:nth-child(3) {
   display: flex;
   flex-direction: row-reverse;
 }
-div.bio:nth-child(3) {
+div.bio:nth-child(4) {
   display: flex;
 }
 
-div.bio:nth-child(4) {
+div.bio:nth-child(5) {
   display: flex;
   flex-direction: row-reverse;
 }
