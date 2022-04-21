@@ -1,7 +1,7 @@
 <template>
   <div class="metrics">
   <h2 class="dash-headers">USER SETTINGS</h2>
-  <form class="form-register" @submit.prevent="updateEmail(newEmail.email)">
+  <form id="updateForm" @submit.prevent="updateEmail(newEmail.email)">
     <div class="tooltip">
     <p class="tooltiptext">Your e-mail will be used to send you updates on
       new books added to our database. You can opt
@@ -47,4 +47,10 @@ export default {
 
 <style>
 
+#updateForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 </style>
