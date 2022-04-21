@@ -81,6 +81,20 @@ INSERT INTO book_detail (author_last_name, author_first_name, book_title, public
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Pullman', 'Philip', 'The Golden Compass', 1995, '9780679879244', 'fantasy');
 INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Atwood', 'Margaret', 'The Testaments', 2019, '9780385543781', 'scifi');
 
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Isaacson', 'Walter', 'Steve Jobs', 2011, '9781451648539', 'biographies');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Krakauer', 'Jon', 'Into the Wild', 1996, '9780385486804', 'biographies');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Skloot', 'Rebecca', 'The Immortal Life of Henrietta Lacks', 2010, '9781400052172', 'biographies');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('King', 'Stephen', 'The Shining', 1977, '9780450040184', 'horror');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Stoker', 'Bram', 'Dracula', 1897, '9780393970128', 'horror');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Jackson', 'Shirley', 'The Haunting of Hill House', 1959, '9780143039983', 'horror');
+
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Austen', 'Jane', 'Pride and Prejudice', 1813, '9780679783268', 'romance');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Green', 'John', 'The Fault in Our Stars', 2012, '9780142424179', 'romance');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Shakespeare', 'William', 'Romeo and Juliet', 1597, '9780743477116', 'romance');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Capote', 'Truman', 'In Cold Blood', 1959, '9780679745587', 'true crime');
+INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) VALUES ('Larson', 'Erik', 'The Devil in the White City', 2002, '9780739303405', 'true crime');
+
+
 INSERT INTO book_user (user_id, isbn_number) VALUES (1, '9781400079278');
 INSERT INTO book_user (user_id, isbn_number) VALUES (1, '9780356500157');
 INSERT INTO book_user (user_id, isbn_number) VALUES (2, '9780385543781');

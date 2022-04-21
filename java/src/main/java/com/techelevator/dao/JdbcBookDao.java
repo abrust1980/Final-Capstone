@@ -87,6 +87,7 @@ public class JdbcBookDao implements BookDao {
         return genre;
     }
 
+
     @Override
     public List<Genre> userGenres(Long id) {
         List<Genre> usersGenres = new ArrayList<>();
@@ -100,12 +101,10 @@ public class JdbcBookDao implements BookDao {
         return usersGenres;
     }
 
-
-
     public void addBookToList (Book book){
-        String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) " +
-                "VALUES (?, ?, ?, ?, ?);";
-        jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn());
+        String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number, book_genre) " +
+                "VALUES (?, ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn(), book.getGenre());
     }
 
     private Genre mapRowToGenre (SqlRowSet row) {

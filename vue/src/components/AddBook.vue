@@ -12,6 +12,19 @@
         <input class="site-input" v-model="newBook.isbn" type="text" placeholder="ISBN...">
         <p>Publication Year</p>
         <input class="site-input" v-model="newBook.publicationYear" type="number">
+        <p>Genre</p>
+        <select class="site-input" name="genre" v-model="newBook.genre" @change="submit">
+            <option value="scifi">Scifi</option>
+            <option value="humor">Humor</option>
+            <option value="literature">Literature</option>
+            <option value="juvenile_fiction">Juvenile Fiction</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="biographies">Biography</option>
+            <option value="true_crime">True Crime</option>
+            <option value="other">Other</option>
+            </select>
         <button id="book-submit">Add New Book</button> 
     </form>
   </div>    
@@ -31,7 +44,8 @@ export default {
                 lastName: "",
                 firstName: "",
                 bookTitle: "",
-                publicationYear: 1900
+                publicationYear: 1900,
+                genre: ""
                 }
             }
         },
