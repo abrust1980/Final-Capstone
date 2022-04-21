@@ -4,7 +4,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
     <div id="nav">
-      <img src="https://i.imgur.com/oods9R8.png" />
+      <img id="logo" src="https://i.imgur.com/oods9R8.png" />
       <div id="bottom-row">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       <p>|</p>
@@ -19,10 +19,33 @@
       </div>
     </div>
     <router-view />
+    <div id="footer-div">
+      <p class="footer-text">2022 © Pocket Librarian. All Rights Reserved.</p>
+      <p id="about-link" class="footer-text">ABOUT</p>
+            <div id="icons">
+        <img src="../src/assets/icons8-facebook-64.png" />
+        <img src="../src/assets/icons8-instagram-64.png" />
+        <img src="../src/assets/icons8-twitter-64.png" />
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
+#footer-div {
+  display: flex;
+  background-color: #ECECEC;
+  font-size: 1vw;
+  border-top: 5px solid #37464a;
+  font-family: 'Comfortaa', cursive;
+  align-items: center;
+  
+}
+
+#about-link {
+  flex-grow: 2;
+}
+
 #nav {
   display: flex;
   flex-direction: column;
@@ -54,7 +77,7 @@ a {
   text-decoration: none;
 }
 
-img {
+#logo {
   height: 15vh;
   width: auto;
 }
