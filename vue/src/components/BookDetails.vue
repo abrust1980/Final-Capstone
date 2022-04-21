@@ -4,7 +4,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
-    <h2 id="read-indicator" v-if="hasRead">MARKED AS READ</h2>
+    
+    <h2 id="read-indicator" v-if="hasRead"> READ</h2>
+    <h2 id="not-read-indicator" v-else>NOT READ</h2>
     <h2 class="book-title">{{book.bookTitle}}</h2>
     <h3 class="author">{{book.firstName}}&nbsp;{{book.lastName}}</h3>
     <a :href="'https://openlibrary.org/isbn/' + book.isbn" target="_blank">
@@ -15,6 +17,7 @@
     <p>YEAR PUBLISHED</p>
     <h3>{{book.publicationYear}}</h3>
     <a href="#" class="add-button" v-if="$store.state.token != ''" v-on:click="addToReadingList(book)">Add to Reading List</a>
+    
 </div>
 </div>
 </template>
@@ -74,6 +77,7 @@ export default {
 
 .book-image {
     height: 10vw;
+    width: 7vw;
     border: 5px solid #bb9d26;
     margin-bottom: 10px;
 }
