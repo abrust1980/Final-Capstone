@@ -29,7 +29,7 @@ import axios from 'axios'
 
 
 const newAxiosInstanceAgain = axios.create();
-// const API_KEY= 'AIzaSyASnNpFjjiEB5ZpEnnByPSZ8x5LF0yZy_Q';
+
 delete newAxiosInstanceAgain.defaults.headers.common['Authorization']
 //This code removes the bearer token, allowing us to access google api
 export default {

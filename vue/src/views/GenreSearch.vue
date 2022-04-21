@@ -18,9 +18,9 @@ import booksService from '@/services/BooksService'
 
 
 const newAxiosInstanceAgain = axios.create();
-// const API_KEY= 'AIzaSyASnNpFjjiEB5ZpEnnByPSZ8x5LF0yZy_Q';
+
 delete newAxiosInstanceAgain.defaults.headers.common['Authorization']
-//This code removes the bearer token, allowing us to access google api
+//This code removes the bearer token, allowing us to access OpenLibrary api
 export default {
   data() {
     return {
@@ -53,19 +53,7 @@ export default {
         })
             }).catch (err => console.error(err))
       
-    //   this.loadState = 'loading'
-    //   newAxiosInstanceAgain
-    //     .get(
-    //       `https://www.googleapis.com/books/v1/volumes?q=incategories:${this.keyword}
-    //         &key=AIzaSyDFmqAhmYt_gAa_aIdeWz_NvFF4Lg1mi8E&orderBy=newest&maxResults=${this.maxResults}`
-    //     )
-    //     .then(response => {
-    //       console.log(this.keyword)
-    //       console.log(response.data.items)
-    //       this.books = response.data.items
-    //       this.loadState = 'success'
-    //     })
-    
+        
   }
 }
 </script>

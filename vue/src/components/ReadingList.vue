@@ -132,10 +132,16 @@ padding: 17px;
 }
 
 #mark-read {
+    font-size: 12px;
     display: flex;
-    margin-left: 40%;
+    margin-left: 37%;
     margin-top: -60px;
     margin-bottom: 60px;
+    background-color: #F78888;
+    border: 3px solid #d35a5a;
+    padding: 4px;
+    text-transform: uppercase;
+    border-radius: 15px 15px 15px 15px;
 
 }
 
