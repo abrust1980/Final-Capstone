@@ -24,7 +24,8 @@ export default new Vuex.Store({
     allBooks: [],
     lastSearchDate: '',
     userEmails: [],
-    genreCounts: []
+    genreCounts: [],
+    userRole: ''
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -64,6 +65,5 @@ export default new Vuex.Store({
     SET_GENRE_COUNTS(state, data) {
       state.genreCounts = data;
     }
-    
   }
 })

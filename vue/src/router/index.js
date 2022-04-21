@@ -7,14 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Books from '../views/Books.vue'
 import Readinglist from '../views/Readinglist.vue'
-import NewBook from '../views/NewBook.vue'
-import Open from '../views/Open.vue'
-import Settings from '../views/Settings.vue'
-import Genre from '../views/Genre.vue'
+import UserPage from '../views/UserPage.vue'
 import GenreSearch from '../views/GenreSearch.vue'
-
-
-
 
 Vue.use(Router)
 
@@ -73,47 +67,23 @@ const router = new Router({
       }
     },
     {
-      path: "/user/readinglist",
+      path: "/user/reading-list",
       name: "readinglist",
       component: Readinglist,
       meta: {
         requiresAuth: true
       }
     },
-    {
-      path: "/admin/create",
-      name: "addbook",
-      component: NewBook,
-      meta: {
-        requiresAuth: true
-      }
-    },
    {
-     path: "/search",
-     name: "search",
-     component: Open,
-     meta: {
-       requiresAuth: false
-     }
-   },
-   {
-     path: "/user/settings",
-    name: "settings",
-    component: Settings,
+     path: "/user/account",
+    name: "useraccount",
+    component: UserPage,
     meta: {
       requiresAuth: true
     }
    },
   {
-    path: "/user/genre",
-    name: "genre",
-    component: Genre,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/user/genresearch",
+    path: "/user/genre-search",
     name: "genresearch",
     component: GenreSearch,
     meta: {

@@ -16,10 +16,6 @@ public interface UserDao {
 
     int findIdByUsername(String username);
 
-    void setLastSearchDate(int userId);
-
-    Date getLastSearchDate (int userId);
-
     List<String> findAllEmails();
 
     boolean create(String username, String password, String role, String email);

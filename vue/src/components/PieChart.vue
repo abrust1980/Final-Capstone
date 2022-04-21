@@ -1,6 +1,5 @@
 <template>
-<div>
-  <Bar
+  <Pie
     :chart-options="chartOptions"
     :chart-data="chartData"
     :chart-id="chartId"
@@ -8,24 +7,19 @@
     :plugins="plugins"
     :css-classes="cssClasses"
     :styles="styles"
-    :width="width"
-    :height="height"
   />
-
-  <button v-on:click="printRealQuick()">print</button>
-  </div>
-</template>
+  </template>
 
 <script>
-import { Bar } from 'vue-chartjs/legacy'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import BooksService from '../services/BooksService'
+import { Pie } from 'vue-chartjs/legacy';
+import { Chart, registerables } from 'chart.js';
+import BooksService from '../services/BooksService';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+Chart.register(...registerables);
 
 export default {
-  name: 'stats-chart',
-  components: { Bar },
+  name: 'pie-chart',
+  components: { Pie },
   props: {
     chartId: {
       type: String,
@@ -34,14 +28,6 @@ export default {
     datasetIdKey: {
       type: String,
       default: 'label'
-    },
-    width: {
-      type: Number,
-      default: 400
-    },
-    height: {
-      type: Number,
-      default: 400
     },
     cssClasses: {
       default: '',
@@ -59,7 +45,26 @@ export default {
   data() {
     return {
       chartOptions: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          tooltip: {
+            backgroundColor: '#37464a',
+            displayColors: false,
+            bodyFont: {
+                family: "'Comfortaa', cursive",
+                size: 15
+            }
+          },
+          legend: {
+            labels: {
+              color: '#37464a',
+              font: {
+                family: "'Comfortaa', cursive",
+                size: 20
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -68,9 +73,6 @@ export default {
           BooksService.getGenreCounts().then(response => {
                 this.$store.commit("SET_GENRE_COUNTS", response.data);
             });
-      },
-      printRealQuick() {
-          console.log(this.listGenreNames);
       }
   },
   computed: {
@@ -90,8 +92,23 @@ export default {
         chartData() {
             return {
                 labels: this.listGenreNames,
-                datasets: [ { data: this.listGenreCounts } ]
-            }
+                datasets: [ { data: this.listGenreCounts,
+                backgroundColor: [
+                '#FF6680',
+                '#A1C1FC',
+                '#D147FF',
+                '#4289A5',
+                '#BCF298',
+                '#F9CCC2',
+                '#6A43D3',
+                '#F78A71',
+                '#C7C9FC'
+              ],
+              borderColor: [
+                '#ECECEC'
+              ]
+          } ]
+        }
       }
   },
   created() {
