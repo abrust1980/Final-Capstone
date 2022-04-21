@@ -1,18 +1,18 @@
 <template>
   <div id="submit">
-    <h1> Add New Book </h1>
+    <h2 class="dash-headers">Add New Book</h2> 
     <form ref="form" id="submit-book-form" v-on:submit.prevent="addUserEmails(), addBookImage(), addNewBook()" @submit.prevent="sendEmail">
-        <p>Book Title</p>
+        <label>Book Title</label>
         <input class="site-input" v-model="newBook.bookTitle" type="text" name="new_book_title" placeholder="Book Title...">
-        <p>Author First Name</p>
+        <label>Author First Name</label>
         <input class="site-input" v-model="newBook.firstName" type="text" name="new_book_firstname" placeholder="Author First Name...">
-        <p>Author Last Name</p>
+        <label>Author Last Name</label>
         <input class="site-input" v-model="newBook.lastName" type="text" name="new_book_lastname" placeholder="Author Last Name...">
-        <p>ISBN Number</p>
+        <label>ISBN Number</label>
         <input class="site-input" v-model="newBook.isbn" type="text" placeholder="ISBN...">
-        <p>Publication Year</p>
+        <label>Publication Year</label>
         <input class="site-input" v-model="newBook.publicationYear" type="number">
-        <p>Genre</p>
+        <label>Genre</label>
         <select class="site-input" name="genre" v-model="newBook.genre" @change="submit">
             <option value="scifi">Scifi</option>
             <option value="humor">Humor</option>
@@ -112,15 +112,13 @@ p {
 }
 
 #book-submit {
-    border: 8px solid #5DA2D5;
-    background-color: #F3D250;
-    padding: 5px;
-    margin: 20px;
-    text-align: center;
-    font-family: 'Comfortaa', cursive;
-    font-weight: bold;
-    height: 50px;
-    width: 200px;
+    background-color: #F78888;
+    border: 5px solid #d35a5a;
+    padding: 10px;
+    margin-top: 20px;
     text-transform: uppercase;
+    font-family: 'Comfortaa', cursive;
+    border-radius: 15px 15px 15px 15px;
+    font-weight: bold;
 }
 </style>

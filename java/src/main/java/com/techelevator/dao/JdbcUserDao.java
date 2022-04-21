@@ -45,21 +45,6 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void setLastSearchDate(int userId) {
-        String sql = "UPDATE user_last_search SET last_search = CURRENT_TIMESTAMP WHERE user_id = ?";
-        jdbcTemplate.update(sql, userId);
-    }
-
-    @Override
-    public Date getLastSearchDate(int userId) {
-        Date searchDate = null;
-        String sql = "SELECT last_search FROM user_last_search WHERE user_id = ?";
-        searchDate = jdbcTemplate.queryForObject(sql, Date.class, userId);
-
-        return searchDate;
-    }
-
-    @Override
     public void deleteUserEmail(Principal principal) {
         String sql = "UPDATE users SET email = null WHERE username = ?";
         jdbcTemplate.update(sql, principal.getName());
