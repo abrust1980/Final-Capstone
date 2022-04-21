@@ -21,7 +21,7 @@
     <router-view />
     <div id="footer-div">
       <p class="footer-text">2022 © Pocket Librarian. All Rights Reserved.</p>
-      <p id="about-link" class="footer-text">ABOUT</p>
+      <router-link v-bind:to="{ name: 'about' }" id="about-link" class="footer-text">ABOUT</router-link>
             <div id="icons">
         <img src="../src/assets/icons8-facebook-64.png" />
         <img src="../src/assets/icons8-instagram-64.png" />
