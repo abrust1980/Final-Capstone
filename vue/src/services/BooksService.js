@@ -13,6 +13,9 @@ export default {
     },
     showGenre() {
         return http.get('/user/genre');
+    },
+    getGenreCounts() {
+        return http.get('/user/read-genres');
     }
     
 }

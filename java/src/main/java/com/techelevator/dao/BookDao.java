@@ -16,5 +16,6 @@ public interface BookDao {
     void hasRead (Long id, String isbn);
     boolean hasReadValue(Long id, String isbn);
     String favoriteGenre(Long id);
+    List<Genre> userGenres(Long id);
 
 }

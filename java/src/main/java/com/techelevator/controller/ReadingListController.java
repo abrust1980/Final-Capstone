@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.BookDao;
 import com.techelevator.model.Book;
+import com.techelevator.model.Genre;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,12 @@ public class ReadingListController {
     public String showFavoriteGenre(Principal principal) {
         Long userId = bookDao.getIdByUsername(principal);
         return bookDao.favoriteGenre(userId);
+    }
 
+    @RequestMapping(path="/user/read-genres", method = RequestMethod.GET)
+    public List<Genre> showAllGenresRead(Principal principal) {
+        Long userId = bookDao.getIdByUsername(principal);
+        return bookDao.userGenres(userId);
     }
 
     @RequestMapping(path="/book/has-read", method = RequestMethod.PUT)

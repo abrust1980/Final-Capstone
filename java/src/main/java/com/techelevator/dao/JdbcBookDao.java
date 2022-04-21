@@ -55,8 +55,6 @@ public class JdbcBookDao implements BookDao {
         }
         return hasRead;
 
-
-
     }
 
 
@@ -80,30 +78,43 @@ public class JdbcBookDao implements BookDao {
         return usersBooks;
     }
 
-        public String favoriteGenre(Long id) {
-
+    public String favoriteGenre(Long id) {
         String sql = "SELECT book_genre FROM book_detail " +
             "JOIN book_user ON book_detail.isbn_number=book_user.isbn_number " +
             "GROUP BY book_genre, user_id HAVING user_id = ? ORDER BY COUNT(book_genre) DESC LIMIT 1;";
 
         String genre = jdbcTemplate.queryForObject(sql, String.class, id);
         return genre;
-
     }
 
-        public void addBookToList (Book book){
-            String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) " +
-                    "VALUES (?, ?, ?, ?, ?);";
-            jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn());
+    @Override
+    public List<Genre> userGenres(Long id) {
+        List<Genre> usersGenres = new ArrayList<>();
+        String sql = "SELECT book_genre, count(*) FROM book_detail " +
+                "JOIN book_user ON book_detail.isbn_number=book_user.isbn_number " +
+                "GROUP BY book_genre, user_id HAVING user_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while (results.next()) {
+            usersGenres.add(mapRowToGenre(results));
         }
+        return usersGenres;
+    }
 
-        private Genre mapRowToGenre (SqlRowSet row) {
+
+
+    public void addBookToList (Book book){
+        String sql = "INSERT INTO book_detail (author_last_name, author_first_name, book_title, publication_year, isbn_number) " +
+                "VALUES (?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, book.getLastName(), book.getFirstName(), book.getBookTitle(), book.getPublicationYear(), book.getIsbn());
+    }
+
+    private Genre mapRowToGenre (SqlRowSet row) {
         Genre genreType = new Genre();
         genreType.setGenre(row.getString("book_genre"));
-        genreType.setCount(row.getLong("the_count"));
+        genreType.setCount(row.getLong("count"));
 
         return genreType;
-        }
+    }
 
         private Book mapRowToBook (SqlRowSet row){
             Book book = new Book();
@@ -113,8 +124,6 @@ public class JdbcBookDao implements BookDao {
             book.setBookTitle(row.getString("book_title"));
             book.setPublicationYear(row.getInt("publication_year"));
             book.setBookAdded(row.getTimestamp("book_added"));
-
-
 
             return book;
         }

@@ -17,14 +17,19 @@
     <p>┅</p>
     <button id="delete-button" class="btn btn-lg btn-primary btn-block register-button" v-on:click="deleteEmail()">Remove my E-mail</button>
     <p v-if="isDeleted">Your E-mail has been removed!</p>
-    </div>
+    <stats-chart />
+  </div>
 </template>
 
 <script>
 import UserService from '../services/UserService'
+import StatsChart from '../views/StatsChart.vue'
 
 export default {
     name: 'settings',
+    components: {
+      StatsChart
+    },
     data() {
         return {
             newEmail: {
@@ -122,6 +127,11 @@ label {
   border-width: 5px;
   border-style: solid;
   border-color: transparent #37464a transparent transparent;
+}
+
+#chart {
+  width: 50%;
+  height: 50%;
 }
 
 
