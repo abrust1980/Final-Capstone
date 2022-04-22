@@ -21,7 +21,7 @@
     <router-view />
     <div id="footer-div">
       <p class="footer-text">2022 © Pocket Librarian. All Rights Reserved.</p>
-      <p id="about-link" class="footer-text">ABOUT</p>
+      <router-link v-bind:to="{ name: 'about' }" id="about-link" class="footer-text">ABOUT</router-link>
             <div id="icons">
         <img src="../src/assets/icons8-facebook-64.png" />
         <img src="../src/assets/icons8-instagram-64.png" />
@@ -33,17 +33,27 @@
 
 <style>
 #footer-div {
-  display: flex;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+  "copyright about images";
   background-color: #ECECEC;
-  font-size: 1vw;
   border-top: 5px solid #37464a;
   font-family: 'Comfortaa', cursive;
-  align-items: center;
-  
+}
+
+#copyright {
+  grid-area: copyright;
 }
 
 #about-link {
-  flex-grow: 2;
+  grid-area: about;
+}
+
+#icons {
+  grid-area: images;
 }
 
 #nav {

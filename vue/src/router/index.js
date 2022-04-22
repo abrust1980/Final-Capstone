@@ -9,6 +9,7 @@ import Books from '../views/Books.vue'
 import Readinglist from '../views/Readinglist.vue'
 import UserPage from '../views/UserPage.vue'
 import GenreSearch from '../views/GenreSearch.vue'
+import About from '../views/About.vue'
 
 Vue.use(Router)
 
@@ -88,6 +89,14 @@ const router = new Router({
     component: GenreSearch,
     meta: {
       requiresAuth: true
+    }
+  }, 
+  {
+    path: "/about",
+    name: "about",
+    component: About,
+    meta: {
+      requiresAuth: false
     }
   }
   ]
